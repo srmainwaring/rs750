@@ -47,6 +47,7 @@
 <robot name="rs750" xmlns:xacro="http://www.ros.org/wiki/xacro">
     <xacro:include filename="$(find rs750_description)/urdf/rs750_materials.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_inertials.xacro"/>
+    <xacro:include filename="$(find rs750_description)/urdf/rs750.gazebo"/>
 
     <!-- Constants for robot dimensions -->
     <xacro:property name="scale" value="3.2" />
@@ -120,14 +121,14 @@
 
     <!-- Hull  -->
     <link name="hull_link">
-        <visual name="hull_visual">
+        <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
                 <mesh filename="package://rs750_description/meshes/rs750_hull.stl" />
             </geometry>
             <material name="red" />
         </visual>
-        <visual name="deck_visual">
+        <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
                 <mesh filename="package://rs750_description/meshes/rs750_deck.stl" />
@@ -162,7 +163,7 @@
 
     <!-- Keel fin -->
     <link name="keel_fin_link">
-        <visual name="keel_fin_visual">
+        <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
                 <mesh filename="package://rs750_description/meshes/rs750_keel_fin.stl" />
@@ -170,7 +171,7 @@
             <material name="yellow" />
         </visual>
 
-        <collision name="keel_fin_collision">
+        <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
                 <mesh filename="package://rs750_description/meshes/rs750_keel_fin_collision_2.stl" />
@@ -197,7 +198,7 @@
 
     <!-- Keel bulb -->
     <link name="keel_bulb_link">
-        <visual name="keel_bulb_visual">
+        <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
                 <mesh filename="package://rs750_description/meshes/rs750_keel_bulb.stl" />
@@ -205,7 +206,7 @@
             <material name="yellow" />
         </visual>
 
-        <collision name="keel_bulb_collision">
+        <collision>
             <origin rpy="0 ${math_pi_over_2} 0" xyz="0 0 0" />
             <geometry>
                 <cylinder length="${keel_bulb_length}" radius="${keel_bulb_radius}" />
@@ -232,7 +233,7 @@
 
     <!-- Rudder -->
     <link name="rudder_link">
-        <visual name="rudder_visual">
+        <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
                 <mesh filename="package://rs750_description/meshes/rs750_rudder.stl" />
@@ -240,7 +241,7 @@
             <material name="yellow" />
         </visual>
 
-        <collision name="rudder_collision">
+        <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
                 <mesh filename="package://rs750_description/meshes/rs750_rudder_collision_3.stl" />

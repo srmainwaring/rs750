@@ -37,7 +37,7 @@
 
 <!--  xacro macros for robot materials.
  -->
-<robot name="rs750_materials" xmlns:xacro="http://ros.org/wiki/xacro">  
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
    <material name="red">
         <color rgba="0.8 0 0 1"/>
     </material>

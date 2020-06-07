@@ -1,0 +1,30 @@
+<!-- Launch Gazebo and spawn the robot model. 
+ -->
+<launch>
+    <arg name="debug" default="false"/>
+    <arg name="gui" default="true"/>
+    <arg name="paused" default="true"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="physics" default="ode"/>
+    <arg name="recording" default="false"/>
+    <arg name="verbose" default="false"/>
+
+    <!-- Launch Gazebo -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find asv_wave_sim_gazebo)/worlds/ocean.world"/>
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+        <arg name="physics" value="$(arg physics)"/>
+        <arg name="recording" value="$(arg recording)"/>
+        <arg name="verbose" value="$(arg verbose)"/>
+    </include>
+
+    <!-- Spawn the model -->
+    <include file="$(find rs750_gazebo)/launch/rs750_spawn.launch">        
+    </include>
+
+</launch>
