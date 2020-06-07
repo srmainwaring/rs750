@@ -3,8 +3,8 @@
  -->
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <!-- Hydrodynamics plugin -->
     <gazebo>
+        <!-- Hydrodynamics plugin -->
         <plugin name="hydrodynamics" filename="libHydrodynamicsPlugin.so">
             <!-- Wave Model -->
             <wave_model>ocean_waves</wave_model>
@@ -21,6 +21,72 @@
                 <waterline>false</waterline>
                 <underwater_surface>false</underwater_surface>
             </markers>
+        </plugin>
+
+      <!-- Foil plugins  -->
+        <plugin name="keel_fin_liftdrag" filename="libFoilPlugin.so">
+            <a0>0.0</a0>
+            <cla>6.2832</cla>
+            <alpha_stall>0.1592</alpha_stall>
+            <cla_stall>-0.7083</cla_stall>
+            <cda>0.63662</cda>
+            <area>0.17</area>
+            <fluid_density>1000</fluid_density>
+            <forward>1 0 0</forward>
+            <upward>0 1 0</upward>
+            <cp>0 0 0</cp>
+            <link_name>keel_fin_link</link_name>
+            <radial_symmetry>true</radial_symmetry>
+            <topic>lift_drag</topic>
+        </plugin>
+       
+        <plugin name="rudder_liftdrag" filename="libFoilPlugin.so">
+            <a0>0.0</a0>
+            <cla>6.2832</cla>
+            <alpha_stall>0.1592</alpha_stall>
+            <cla_stall>-0.7083</cla_stall>
+            <cda>0.63662</cda>
+            <area>0.12</area>
+            <fluid_density>1000</fluid_density>
+            <forward>1 0 0</forward>
+            <upward>0 1 0</upward>
+            <cp>-0.06 0 -0.2</cp>
+            <link_name>rudder_link</link_name>
+            <radial_symmetry>true</radial_symmetry>
+            <topic>lift_drag</topic>
+        </plugin> 
+
+        <!-- Sail plugins  -->
+        <plugin name="main_sail_liftdrag" filename="libSailPlugin.so">
+            <a0>0.0</a0>
+            <cla>6.2832</cla>
+            <alpha_stall>0.1592</alpha_stall>
+            <cla_stall>-0.7083</cla_stall>
+            <cda>0.63662</cda>
+            <area>1.81</area>
+            <fluid_density>1.2</fluid_density>
+            <forward>1 0 0</forward>
+            <upward>0 1 0</upward>
+            <cp>-0.30875 0 1.30625</cp>
+            <link_name>main_sail_link</link_name>
+            <radial_symmetry>true</radial_symmetry>
+            <topic>lift_drag</topic>
+        </plugin>
+
+        <plugin name="fore_sail_liftdrag" filename="libSailPlugin.so">
+            <a0>0.0</a0>
+            <cla>6.2832</cla>
+            <alpha_stall>0.1592</alpha_stall>
+            <cla_stall>-0.7083</cla_stall>
+            <cda>0.63662</cda>
+            <area>1.43</area>
+            <fluid_density>1.2</fluid_density>
+            <forward>1 0 0</forward>
+            <upward>0 1 0</upward>
+            <cp>-0.605666667 0 1.20528</cp>
+            <link_name>fore_sail_link</link_name>
+            <radial_symmetry>true</radial_symmetry>
+            <topic>lift_drag</topic>
         </plugin>
     </gazebo>
 
@@ -54,7 +120,7 @@
     <material>Gazebo/Red</material>
   </gazebo> -->
 
- <!-- Camera Sensor -->
+  <!-- Camera Sensor -->
   <!-- <gazebo reference="cam_link">
     <sensor type="camera" name="camera1">
       <always_on>1</always_on>>
