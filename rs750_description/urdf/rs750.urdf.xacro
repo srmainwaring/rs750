@@ -262,9 +262,9 @@
         <axis xyz="0 0 1" />
         <limit 
             lower="${-math_pi_over_2}"
-            upper="${-math_pi_over_2}"
-            effort="10000"
-            velocity="10000"
+            upper="${math_pi_over_2}"
+            effort="1000"
+            velocity="1000"
         />
         <parent link="base_link" />
         <child link="rudder_link" />

@@ -12,11 +12,12 @@
 
     <!-- Publish joint states -->
     <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher">
-        <param name="use_gui" value="$(arg use_gui)" />
+        <param name="use_gui" value="false" />
     </node>
 
-    <!-- <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui">
-    </node> -->
+    <!-- Joint state publisher GUI -->
+    <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui">
+    </node>
 
     <!-- Publish robot state -->
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
