@@ -54,6 +54,10 @@
         <color rgba="0.8 0.25 0 1"/>
     </material>
 
+    <material name="yellow">
+        <color rgba="0.8 0.8 0 1"/>
+    </material>
+
     <material name="black">
         <color rgba="0 0 0 1"/>
     </material>
