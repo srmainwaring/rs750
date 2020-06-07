@@ -72,6 +72,18 @@
     <xacro:property name="rudder_width" value="${0.006 * scale}" /> 
     <xacro:property name="rudder_depth" value="${0.160 * scale}" />
 
+    <!-- Rough estimates for intertial -->
+    <xacro:property name="main_sail_mass" value="${0.100 * volume_scale}" />
+    <xacro:property name="main_sail_length" value="${0.200 * scale}" />
+    <xacro:property name="main_sail_width" value="${0.006 * scale}" /> 
+    <xacro:property name="main_sail_depth" value="${0.900 * scale}" />
+
+    <!-- Rough estimates for intertial -->
+    <xacro:property name="fore_sail_mass" value="${0.0500 * volume_scale}" />
+    <xacro:property name="fore_sail_length" value="${0.100 * scale}" />
+    <xacro:property name="fore_sail_width" value="${0.006 * scale}" /> 
+    <xacro:property name="fore_sail_depth" value="${0.700 * scale}" />
+
     <xacro:property name="cam_mass" value="0.1" />  
     <xacro:property name="cam_size" value="0.1" />  
 
@@ -260,7 +272,7 @@
     <joint name="rudder_joint" type="revolute">
         <origin rpy="0 0 0" xyz="-1.2436 0.0 -0.0487"/>
         <axis xyz="0 0 1" />
-        <limit 
+        <limit
             lower="${-math_pi_over_2}"
             upper="${math_pi_over_2}"
             effort="1000"
@@ -273,6 +285,115 @@
 
     <gazebo reference="rudder_joint">
     </gazebo>
+
+    <!-- Mast -->
+    <link name="mast_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://rs750_description/meshes/rs750_mast.stl" />
+            </geometry>
+            <material name="black" />
+        </visual>
+    </link>
+
+    <gazebo reference="mast_link">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <joint name="mast_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 2.09"/>
+        <parent link="base_link" />
+        <child link="mast_link" />
+    </joint>
+
+    <gazebo reference="mast_joint">
+    </gazebo>
+
+    <!-- Main sail -->
+    <link name="main_sail_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://rs750_description/meshes/rs750_main_sail.stl" />
+            </geometry>
+            <material name="gray" />
+        </visual>
+
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://rs750_description/meshes/rs750_main_sail.stl" />
+            </geometry>
+        </collision>
+        <xacro:solid_cuboid_inertial 
+            rpy="0 0 0" xyz="0 0 0"
+            mass="${main_sail_mass}"
+            x="${main_sail_length}" y="${main_sail_width}" z="${main_sail_depth}" />
+    </link>
+
+    <gazebo reference="main_sail_link">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <joint name="main_sail_joint" type="revolute">
+        <origin rpy="0 0 0" xyz="-0.02625 0 0.291875"/>
+        <axis xyz="0 0 1" />
+        <limit 
+            lower="${-math_pi_over_2}"
+            upper="${math_pi_over_2}"
+            effort="1000"
+            velocity="1000"
+        />
+        <parent link="base_link" />
+        <child link="main_sail_link" />
+    </joint>
+
+    <gazebo reference="main_sail_joint">
+    </gazebo>
+
+    <!-- Fore sail -->
+    <link name="fore_sail_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://rs750_description/meshes/rs750_fore_sail.stl" />
+            </geometry>
+            <material name="gray" />
+        </visual>
+
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://rs750_description/meshes/rs750_fore_sail.stl" />
+            </geometry>
+        </collision>
+        <xacro:solid_cuboid_inertial 
+            rpy="0 0 0" xyz="0 0 0"
+            mass="${fore_sail_mass}"
+            x="${fore_sail_length}" y="${fore_sail_width}" z="${fore_sail_depth}" />
+    </link>
+
+    <gazebo reference="fore_sail_link">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <joint name="fore_sail_joint" type="revolute">
+        <origin rpy="0 0 0" xyz="1.03125 0 0.235625"/>
+        <axis xyz="-0.271652766 0 0.962395332" />
+        <limit 
+            lower="${-math_pi_over_2}"
+            upper="${math_pi_over_2}"
+            effort="1000"
+            velocity="1000"
+        />
+        <parent link="base_link" />
+        <child link="fore_sail_link" />
+    </joint>
+
+    <gazebo reference="fore_sail_joint">
+    </gazebo>
+
 
     <!-- Camera -->
     <!-- <link name="cam_link">

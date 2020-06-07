@@ -10,14 +10,11 @@
         <arg name="model" value="$(arg model)" />
     </include>
 
-    <!-- Publish joint states -->
-    <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher">
-        <param name="use_gui" value="false" />
-    </node>
+    <!-- Publish joint states use_gui=false -->
+    <node unless="$(arg use_gui)" pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" />
 
-    <!-- Joint state publisher GUI -->
-    <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui">
-    </node>
+    <!-- Publish joint states use_gui=true -->
+    <node if="$(arg use_gui)" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" />
 
     <!-- Publish robot state -->
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
