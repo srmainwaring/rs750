@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>rs750_controller</name>
+    <version>0.0.0</version>
+    <description>URDF and meshes for a RS750 yacht</description>
+    <maintainer email="rhys.maiwaring@me.com">Rhys Mainwaring</maintainer>
+    <license>BSD-3-Clause</license>
+    <url type="website">https://github.com/srmainwaring/rs750</url>
+    <url type="repository">https://github.com/srmainwaring/rs750</url>
+    <url type="bugtracker">https://github.com/srmainwaring/rs750/issues</url>
+    <author email="rhys.maiwaring@me.com">Rhys Mainwaring</author>
+
+    <buildtool_depend>catkin</buildtool_depend>
+
+    <depend>controller_manager</depend>
+    <depend>rs750_description</depend>
+    <depend>geometry_msgs</depend>
+    <depend>hardware_interface</depend>
+    <depend>joint_state_publisher</depend>
+    <depend>roscpp</depend>
+    <depend>rospy</depend>
+    <depend>sensor_msgs</depend>
+    <depend>std_msgs</depend>
+    <depend>tf</depend>
+</package>

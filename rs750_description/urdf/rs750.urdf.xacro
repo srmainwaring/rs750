@@ -287,8 +287,17 @@
         />
         <parent link="base_link" />
         <child link="rudder_link" />
-
     </joint>
+
+    <transmission name="rudder_transmission" >
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="rudder_actuator">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="rudder_joint">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
 
     <gazebo reference="rudder_joint">
         <provideFeedback>true</provideFeedback>
@@ -357,6 +366,16 @@
         <child link="main_sail_link" />
     </joint>
 
+    <transmission name="main_sail_transmission" >
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="main_sail_actuator">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="main_sail_joint">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+
     <gazebo reference="main_sail_joint">
         <provideFeedback>true</provideFeedback>
     </gazebo>
@@ -400,6 +419,16 @@
         <child link="fore_sail_link" />
     </joint>
 
+    <transmission name="fore_sail_transmission" >
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="fore_sail_actuator">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="fore_sail_joint">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+
     <gazebo reference="fore_sail_joint">
         <provideFeedback>true</provideFeedback>
     </gazebo>
@@ -408,8 +437,8 @@
     <xacro:imu_link />
     <xacro:imu_joint x="0.0" y="0.0" z="0.01" yaw="0" />
 
-    <!-- Anemometer (mast head) -->
-    <xacro:anemometer_link />
-    <xacro:anemometer_joint x="0.0" y="0.0" z="4.0" yaw="0" />
+    <!-- Anemometer (mast head) DISABLED - issue with plugin... -->
+    <!-- <xacro:anemometer_link />
+    <xacro:anemometer_joint x="0.0" y="0.0" z="4.0" yaw="0" /> -->
 
 </robot>

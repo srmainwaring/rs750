@@ -1,0 +1,19 @@
+# Configuration for the rudder position controller
+
+#  Subscriptions:
+#       rudder_position/command (std_msgs::Float64)
+#       main_sail_position/command (std_msgs::Float64)
+#       fore_sail_position/command (std_msgs::Float64)
+# 
+rudder_position:
+    type: "position_controllers/JointPositionController"
+    joint: "rudder_joint"
+
+main_sail_position:
+    type: "position_controllers/JointPositionController"
+    joint: "main_sail_joint"
+
+fore_sail_position:
+    type: "position_controllers/JointPositionController"
+    joint: "fore_sail_joint"
+    
