@@ -437,8 +437,8 @@
     <xacro:imu_link />
     <xacro:imu_joint x="0.0" y="0.0" z="0.01" yaw="0" />
 
-    <!-- Anemometer (mast head) DISABLED - issue with plugin... -->
-    <!-- <xacro:anemometer_link />
-    <xacro:anemometer_joint x="0.0" y="0.0" z="4.0" yaw="0" /> -->
+    <!-- Anemometer (mast head) -->
+    <xacro:anemometer_link />
+    <xacro:anemometer_joint x="0.0" y="0.0" z="4.0" yaw="0" />
 
 </robot>

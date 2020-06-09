@@ -1,7 +1,7 @@
 <!-- Launch Gazebo and spawn the robot model. 
  -->
 <launch>
-    <arg name="debug" default="false"/>
+    <arg name="debug" default="false"/>    
     <arg name="extra_gazebo_args"
         default="--server-plugin libRegisterSensorsPlugin.so
                  --gui-plugin libRegisterSensorsPlugin.so"
@@ -15,7 +15,7 @@
     <arg name="verbose" default="false"/>
 
     <!-- Launch Gazebo -->
-    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <include file="$(find asv_sim_gazebo)/launch/empty_world.launch">
         <arg name="world_name" value="$(find asv_wave_sim_gazebo)/worlds/ocean.world"/>
         <arg name="debug" value="$(arg debug)" />
         <arg name="extra_gazebo_args" value="$(arg extra_gazebo_args)" />
