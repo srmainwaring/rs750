@@ -70,7 +70,7 @@
                 <imu>
                     <topic>sensors/imu</topic>
                 </imu>
-                <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+                <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
                     <gaussianNoise>0.0</gaussianNoise>
                     <always_on>true</always_on>
                     <updateRateHZ>50</updateRateHZ>
@@ -82,6 +82,20 @@
                 </plugin>
             </sensor>
         </gazebo> 
+
+        <!-- Magnetic sensor in imu_link -->
+        <gazebo>
+            <plugin name="magnetic_plugin" filename="libhector_gazebo_ros_magnetic.so">
+            <updateRate>10.0</updateRate>
+            <bodyName>imu</bodyName>
+            <frameId>imu</frameId>
+            <topicName>sensors/magnetic</topicName>
+            <offset>0 0 0</offset>
+            <drift>0.0 0.0 0.0</drift>
+            <gaussianNoise>1.3e-2 1.3e-2 1.3e-2</gaussianNoise>
+            </plugin>
+        </gazebo>
+
     </xacro:macro>
 
     <xacro:macro name="imu_joint" params="x y z yaw" > 
@@ -95,18 +109,5 @@
             <preserveFixedJoint>true</preserveFixedJoint>
         </gazebo>
     </xacro:macro>
-
-    <!-- Add the hector_gazebo_plugins magnetic sensor to the IMU frame -->
-    <!-- <gazebo>
-        <plugin name="magnetic_plugin" filename="libhector_gazebo_ros_magnetic.so">
-        <updateRate>10.0</updateRate>
-        <bodyName>imu</bodyName>
-        <frameId>imu</frameId>
-        <topicName>sensors/magnetic</topicName>
-        <offset>0 0 0</offset>
-        <drift>0.0 0.0 0.0</drift>
-        <gaussianNoise>1.3e-2 1.3e-2 1.3e-2</gaussianNoise>
-        </plugin>
-    </gazebo> -->
 
 </robot>
