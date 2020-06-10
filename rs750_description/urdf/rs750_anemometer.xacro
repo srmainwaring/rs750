@@ -40,7 +40,7 @@
  -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
     <xacro:macro name="anemometer_link"> 
-        <link name="anemometer">
+        <link name="anemometer_link">
             <visual>
                 <origin rpy="0 0 0" xyz="0 0 0" />
                 <geometry>
@@ -58,7 +58,7 @@
                 mass="0.01" length="0.05" radius="0.02" />
         </link>
 
-        <gazebo reference="anemometer">
+        <gazebo reference="anemometer_link">
             <material>Gazebo/Green</material>
 
             <sensor type="anemometer" name="anemometer_sensor">
@@ -68,7 +68,7 @@
                 <topic>sensors/anemometer</topic>
                 <plugin filename="libgazebo_ros_anemometer.so" name="anemometer_plugin">
                     <robotNamespace>/</robotNamespace>
-                    <frameId>anemometer</frameId>
+                    <frameId>anemometer_link</frameId>
                     <topicName>wind/apparent</topicName>
                 </plugin>
             </sensor>
@@ -79,11 +79,11 @@
         <joint name="anemometer_joint" type="fixed">
             <origin rpy="0 0 ${yaw}" xyz="${x} ${y} ${z}"/>
             <parent link="base_link" />
-            <child link="anemometer" />
+            <child link="anemometer_link" />
         </joint>
 
         <gazebo reference="anemometer_joint">
-            <preserveFixedJoint>true</preserveFixedJoint>
+            <!-- <preserveFixedJoint>true</preserveFixedJoint> -->
         </gazebo>
     </xacro:macro>
 

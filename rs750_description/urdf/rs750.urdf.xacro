@@ -47,8 +47,9 @@
 <robot name="rs750" xmlns:xacro="http://www.ros.org/wiki/xacro">
     <xacro:include filename="$(find rs750_description)/urdf/rs750_materials.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_inertials.xacro"/>
-    <xacro:include filename="$(find rs750_description)/urdf/rs750_imu.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_anemometer.xacro"/>
+    <xacro:include filename="$(find rs750_description)/urdf/rs750_imu.xacro"/>
+    <xacro:include filename="$(find rs750_description)/urdf/rs750_magnetic.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750.gazebo"/>
 
     <!-- Constants for robot dimensions -->
@@ -211,8 +212,8 @@
 
     <!-- Preserve fixed joint as the keel_fin_link has an associated plugin -->
     <gazebo reference="keel_fin_joint">
-        <disableFixedJointLumping>true</disableFixedJointLumping> 
-        <preserveFixedJoint>true</preserveFixedJoint>
+        <!-- <disableFixedJointLumping>true</disableFixedJointLumping>  -->
+        <!-- <preserveFixedJoint>true</preserveFixedJoint> -->
     </gazebo>
 
     <!-- Keel bulb -->
@@ -433,12 +434,16 @@
         <provideFeedback>true</provideFeedback>
     </gazebo>
 
+    <!-- Anemometer (mast head) -->
+    <xacro:anemometer_link />
+    <xacro:anemometer_joint x="0.0" y="0.0" z="4.0" yaw="0" />
+
     <!-- IMU  -->
     <xacro:imu_link />
     <xacro:imu_joint x="0.0" y="0.0" z="0.01" yaw="0" />
 
-    <!-- Anemometer (mast head) -->
-    <xacro:anemometer_link />
-    <xacro:anemometer_joint x="0.0" y="0.0" z="4.0" yaw="0" />
+    <!-- IMU  -->
+    <xacro:magnetic_link />
+    <xacro:magnetic_joint x="0.0" y="0.0" z="0.01" yaw="0" />
 
 </robot>

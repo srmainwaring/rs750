@@ -35,12 +35,12 @@
     POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!--  xacro macros for IMU sensor (dimensions for SparkFun BNO080).
+<!--  xacro macros for magnetic sensor (dimensions for SparkFun BNO080).
 
  -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:macro name="imu_link"> 
-        <link name="imu_link">
+    <xacro:macro name="magnetic_link"> 
+        <link name="magnetic_link">
             <visual>
                 <origin rpy="0 0 0" xyz="0 0 0" />
                 <geometry>
@@ -58,41 +58,40 @@
                 mass="0.004" x="0.031" y="0.026" z="0.005" />
         </link>
 
-        <gazebo reference="imu_link">
-            <material>Gazebo/Green</material>
-
-            <sensor type="imu" name="imu_sensor">
-                <always_on>true</always_on>
-                <update_rate>50</update_rate>
+        <!--
+        <gazebo reference="magnetic_link">
+            <sensor type="magnetometer" name="magnetic_sensor">
+                <always_on>1</always_on>>
+                <update_rate>100.0</update_rate>
                 <visualize>true</visualize>
-                <topic>sensors/imu</topic>
-                <pose>0 0 0 0 0 0</pose>
-                <imu>
-                    <topic>sensors/imu</topic>
-                </imu>
-                <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
-                    <gaussianNoise>0.0</gaussianNoise>
-                    <always_on>true</always_on>
-                    <updateRateHZ>50</updateRateHZ>
-                    <topicName>sensors/imu</topicName>
-                    <bodyName>imu_link</bodyName>
-                    <frameName>imu_link</frameName>
-                    <xyzOffset>0 0 0</xyzOffset>
-                    <rpyOffset>0 0 0</rpyOffset>
-                </plugin>
+                <magnetometer name="mag">
+                </magnetometer>
             </sensor>
-        </gazebo> 
+        </gazebo>
+        -->
+
+        <gazebo>
+            <plugin name="magnetic_plugin" filename="libhector_gazebo_ros_magnetic.so">
+                <updateRate>10.0</updateRate>
+                <bodyName>magnetic_link</bodyName>
+                <frameId>magnetic_link</frameId>
+                <topicName>sensors/magnetic</topicName>
+                <offset>0 0 0</offset>
+                <drift>0.0 0.0 0.0</drift>
+                <gaussianNoise>1.3e-2 1.3e-2 1.3e-2</gaussianNoise>
+            </plugin>
+        </gazebo>
 
     </xacro:macro>
 
-    <xacro:macro name="imu_joint" params="x y z yaw" > 
-        <joint name="imu_joint" type="fixed">
+    <xacro:macro name="magnetic_joint" params="x y z yaw" > 
+        <joint name="magnetic_joint" type="fixed">
             <origin rpy="0 0 ${yaw}" xyz="${x} ${y} ${z}"/>
             <parent link="base_link" />
-            <child link="imu_link" />
+            <child link="magnetic_link" />
         </joint>
 
-        <gazebo reference="imu_joint">
+        <gazebo reference="magnetic_joint">
             <!-- <preserveFixedJoint>true</preserveFixedJoint> -->
         </gazebo>
     </xacro:macro>

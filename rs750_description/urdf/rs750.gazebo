@@ -107,36 +107,6 @@
         </plugin>
     </gazebo>
 
-  <!-- Base Material (main hull) -->
-  <!-- <gazebo reference="base_link">
-    <material>Gazebo/Orange</material>
-  </gazebo> -->
-
-  <!-- Camera Material -->
-  <!-- <gazebo reference="cam_link">
-    <material>Gazebo/Red</material>
-  </gazebo> -->
-
-  <!-- Ray Material -->
-  <!-- <gazebo reference="ray_link">
-    <material>Gazebo/Red</material>
-  </gazebo> -->
-
-  <!-- GPS Material -->
-  <!-- <gazebo reference="gps_link">
-    <material>Gazebo/Red</material>
-  </gazebo> -->
-
-  <!-- IMU Material -->
-  <!-- <gazebo reference="imu_link">
-    <material>Gazebo/Red</material>
-  </gazebo> -->
-
-  <!-- Magnetometer Material -->
-  <!-- <gazebo reference="mag_link">
-    <material>Gazebo/Red</material>
-  </gazebo> -->
-
   <!-- Camera Sensor -->
   <!-- <gazebo reference="cam_link">
     <sensor type="camera" name="camera1">
@@ -217,36 +187,6 @@
     </sensor>
   </gazebo> -->
 
- <!-- IMU Sensor -->
-  <!-- <gazebo reference="imu_link">
-    <gravity>true</gravity>
-    <sensor type="imu" name="imu1">
-      <always_on>1</always_on>>
-      <update_rate>100.0</update_rate>
-      <visualize>true</visualize>
-      <imu name="imu1">
-      </imu>
-      <plugin name="imu_controller" filename="libgazebo_ros_imu_sensor.so" >
-        <topicName>/bbot/imu</topicName>
-        <bodyName>imu_link</bodyName>
-        <updateRateHZ>10.0</updateRateHZ>
-        <gaussianNoise>0.0</gaussianNoise>
-        <xyzOffset>0 0 0</xyzOffset>
-        <rpyOffset>0 0 0</rpyOffset>
-        <frameName>imu_link</frameName>
-      </plugin>
-    </sensor>
-  </gazebo> -->
 
-  <!-- Magnetometer Sensor -->
-  <!-- <gazebo reference="mag_link">
-    <sensor type="magnetometer" name="mag1">
-      <always_on>1</always_on>>
-      <update_rate>100.0</update_rate>
-      <visualize>true</visualize>
-      <magnetometer name="mag1">
-      </magnetometer>
-    </sensor>
-  </gazebo> -->
 
 </robot>
