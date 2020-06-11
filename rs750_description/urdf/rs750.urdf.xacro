@@ -51,6 +51,7 @@
     <xacro:include filename="$(find rs750_description)/urdf/rs750_imu.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_magnetic.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750.gazebo"/>
+    <xacro:include filename="$(find rs750_description)/urdf/rs750_rig.xacro"/>
 
     <!-- Constants for robot dimensions -->
     <xacro:property name="scale" value="3.2" />
@@ -304,135 +305,8 @@
         <provideFeedback>true</provideFeedback>
     </gazebo>
 
-    <!-- Mast (visual only) -->
-    <link name="mast_link">
-        <visual>
-            <origin rpy="0 0 0" xyz="0 0 0" />
-            <geometry>
-                <mesh filename="package://rs750_description/meshes/rs750_mast.stl" />
-            </geometry>
-            <material name="black" />
-        </visual>
-    </link>
-
-    <gazebo reference="mast_link">
-        <material>Gazebo/Black</material>
-    </gazebo>
-
-    <joint name="mast_joint" type="fixed">
-        <origin rpy="0 0 0" xyz="0 0 2.09"/>
-        <parent link="base_link" />
-        <child link="mast_link" />
-    </joint>
-
-    <gazebo reference="mast_joint">
-    </gazebo>
-
-    <!-- Main sail -->
-    <link name="main_sail_link">
-        <visual>
-            <origin rpy="0 0 0" xyz="0 0 0" />
-            <geometry>
-                <mesh filename="package://rs750_description/meshes/rs750_main_sail.stl" />
-            </geometry>
-            <material name="gray" />
-        </visual>
-
-        <collision>
-            <origin rpy="0 0 0" xyz="0 0 0" />
-            <geometry>
-                <mesh filename="package://rs750_description/meshes/rs750_main_sail.stl" />
-            </geometry>
-        </collision>
-        <xacro:solid_cuboid_inertial 
-            rpy="0 0 0" xyz="0 0 0"
-            mass="${main_sail_mass}"
-            x="${main_sail_length}" y="${main_sail_width}" z="${main_sail_depth}" />
-    </link>
-
-    <gazebo reference="main_sail_link">
-        <material>Gazebo/GreyTransparent</material>
-    </gazebo>
-
-    <joint name="main_sail_joint" type="revolute">
-        <origin rpy="0 0 0" xyz="-0.02625 0 0.291875"/>
-        <axis xyz="0 0 1" />
-        <limit 
-            lower="${-math_pi_over_2}"
-            upper="${math_pi_over_2}"
-            effort="1000"
-            velocity="1000"
-        />
-        <parent link="base_link" />
-        <child link="main_sail_link" />
-    </joint>
-
-    <transmission name="main_sail_transmission" >
-        <type>transmission_interface/SimpleTransmission</type>
-        <actuator name="main_sail_actuator">
-            <mechanicalReduction>1</mechanicalReduction>
-        </actuator>
-        <joint name="main_sail_joint">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        </joint>
-    </transmission>
-
-    <gazebo reference="main_sail_joint">
-        <provideFeedback>true</provideFeedback>
-    </gazebo>
-
-    <!-- Fore sail -->
-    <link name="fore_sail_link">
-        <visual>
-            <origin rpy="0 0 0" xyz="0 0 0" />
-            <geometry>
-                <mesh filename="package://rs750_description/meshes/rs750_fore_sail.stl" />
-            </geometry>
-            <material name="gray" />
-        </visual>
-
-        <collision>
-            <origin rpy="0 0 0" xyz="0 0 0" />
-            <geometry>
-                <mesh filename="package://rs750_description/meshes/rs750_fore_sail.stl" />
-            </geometry>
-        </collision>
-        <xacro:solid_cuboid_inertial 
-            rpy="0 0 0" xyz="0 0 0"
-            mass="${fore_sail_mass}"
-            x="${fore_sail_length}" y="${fore_sail_width}" z="${fore_sail_depth}" />
-    </link>
-
-    <gazebo reference="fore_sail_link">
-        <material>Gazebo/GreyTransparent</material>
-    </gazebo>
-
-    <joint name="fore_sail_joint" type="revolute">
-        <origin rpy="0 0 0" xyz="1.03125 0 0.235625"/>
-        <axis xyz="-0.271652766 0 0.962395332" />
-        <limit 
-            lower="${-math_pi_over_2}"
-            upper="${math_pi_over_2}"
-            effort="1000"
-            velocity="1000"
-        />
-        <parent link="base_link" />
-        <child link="fore_sail_link" />
-    </joint>
-
-    <transmission name="fore_sail_transmission" >
-        <type>transmission_interface/SimpleTransmission</type>
-        <actuator name="fore_sail_actuator">
-            <mechanicalReduction>1</mechanicalReduction>
-        </actuator>
-        <joint name="fore_sail_joint">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        </joint>
-    </transmission>
-
-    <gazebo reference="fore_sail_joint">
-        <provideFeedback>true</provideFeedback>
-    </gazebo>
+    <!-- Rig -->
+    <xacro:rig base_link="base_link" x="0.0" y="0.0" z="0.0"/>
 
     <!-- Anemometer (mast head) -->
     <xacro:anemometer_link />
