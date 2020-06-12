@@ -19,6 +19,7 @@ add_compile_options(-std=c++11)
 # Find dependent catkin packages
 
 find_package(catkin REQUIRED COMPONENTS
+    dynamic_reconfigure
     geometry_msgs
     hardware_interface
     roscpp
@@ -34,6 +35,14 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_python_setup()
 
 ################################################################################
+# Dynamic reconfigure
+
+generate_dynamic_reconfigure_options(
+    cfg/CourseController.cfg
+    cfg/SailController.cfg
+)
+
+################################################################################
 # Declare catkin configuration
 
 catkin_package(
@@ -42,6 +51,7 @@ catkin_package(
     LIBRARIES
         rs750_base
     CATKIN_DEPENDS
+        dynamic_reconfigure
         geometry_msgs
         hardware_interface
         roscpp
@@ -78,8 +88,10 @@ install(DIRECTORY include/rs750_controller/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
 
 catkin_install_python(PROGRAMS
-    scripts/sail_trim_controller
-    scripts/twist_translate
+    nodes/course_controller
+    nodes/sail_controller
+    nodes/sail_controller_config
+    scripts/twist_translate.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
