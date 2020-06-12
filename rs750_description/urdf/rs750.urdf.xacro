@@ -50,8 +50,8 @@
     <xacro:include filename="$(find rs750_description)/urdf/rs750_anemometer.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_imu.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_magnetic.xacro"/>
-    <xacro:include filename="$(find rs750_description)/urdf/rs750.gazebo"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_rig.xacro"/>
+    <xacro:include filename="$(find rs750_description)/urdf/rs750.gazebo"/>
 
     <!-- Constants for robot dimensions -->
     <xacro:property name="scale" value="3.2" />
@@ -130,7 +130,7 @@
             <material name="red" />
         </visual>
 
-        <collision name="hull_collision">
+        <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
                 <mesh filename="package://rs750_description/meshes/rs750_hull_collision_3.stl" />
@@ -306,7 +306,7 @@
     </gazebo>
 
     <!-- Rig -->
-    <xacro:rig base_link="base_link" x="0.0" y="0.0" z="0.0"/>
+    <xacro:rig base_link="base_link" scale="${scale}" x="0.0" y="0.0" z="0.0"/>
 
     <!-- Anemometer (mast head) -->
     <xacro:anemometer_link />
@@ -316,7 +316,7 @@
     <xacro:imu_link />
     <xacro:imu_joint x="0.0" y="0.0" z="0.01" yaw="0" />
 
-    <!-- IMU  -->
+    <!-- Magnetometer  -->
     <xacro:magnetic_link />
     <xacro:magnetic_joint x="0.0" y="0.0" z="0.01" yaw="0" />
 

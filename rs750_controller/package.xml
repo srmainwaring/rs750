@@ -12,14 +12,16 @@
 
     <buildtool_depend>catkin</buildtool_depend>
 
-    <depend>controller_manager</depend>
-    <depend>rs750_description</depend>
     <depend>geometry_msgs</depend>
     <depend>hardware_interface</depend>
-    <depend>joint_state_publisher</depend>
     <depend>roscpp</depend>
     <depend>rospy</depend>
     <depend>sensor_msgs</depend>
     <depend>std_msgs</depend>
     <depend>tf</depend>
+
+    <exec_depend>controller_manager</exec_depend>
+    <exec_depend>joint_state_publisher</exec_depend>
+    <exec_depend>robot_state_publisher</exec_depend>
+    <exec_depend>rs750_description</exec_depend>
 </package>

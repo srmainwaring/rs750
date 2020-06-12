@@ -17,7 +17,6 @@
 
     <!-- Launch Gazebo -->
     <include file="$(find asv_sim_gazebo)/launch/empty_world.launch">
-        <arg name="world_name" value="$(find asv_wave_sim_gazebo)/worlds/ocean.world"/>
         <arg name="debug" value="$(arg debug)" />
         <arg name="extra_gazebo_args" value="$(arg extra_gazebo_args)" />
         <arg name="gui" value="$(arg gui)" />

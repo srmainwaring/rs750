@@ -19,11 +19,8 @@ add_compile_options(-std=c++11)
 # Find dependent catkin packages
 
 find_package(catkin REQUIRED COMPONENTS
-    controller_manager
-    rs750_description
     geometry_msgs
     hardware_interface
-    joint_state_publisher
     roscpp
     rospy
     sensor_msgs
@@ -45,10 +42,8 @@ catkin_package(
     LIBRARIES
         rs750_base
     CATKIN_DEPENDS
-        controller_manager
-        rs750_description
         geometry_msgs
-        joint_state_publisher
+        hardware_interface
         roscpp
         rospy
         sensor_msgs
@@ -83,6 +78,8 @@ install(DIRECTORY include/rs750_controller/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
 
 catkin_install_python(PROGRAMS
+    scripts/sail_trim_controller
+    scripts/twist_translate
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

@@ -39,7 +39,21 @@
 
  -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:macro name="rig" params="base_link x y z"> 
+
+
+    <xacro:macro name="rig" params="base_link scale x y z"> 
+
+        <!-- Rough estimates for intertial -->
+        <xacro:property name="main_sail_mass" value="${0.100 * scale * scale * scale}" />
+        <xacro:property name="main_sail_length" value="${0.200 * scale}" />
+        <xacro:property name="main_sail_width" value="${0.006 * scale}" /> 
+        <xacro:property name="main_sail_depth" value="${0.900 * scale}" />
+
+        <!-- Rough estimates for intertial -->
+        <xacro:property name="fore_sail_mass" value="${0.0500 * scale * scale * scale}" />
+        <xacro:property name="fore_sail_length" value="${0.100 * scale}" />
+        <xacro:property name="fore_sail_width" value="${0.006 * scale}" /> 
+        <xacro:property name="fore_sail_depth" value="${0.700 * scale}" />
 
         <!-- Mast (visual only) -->
         <link name="mast_link">

@@ -2,6 +2,8 @@
 <!-- Gazebo elements for the rs750 robot model
  -->
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- Rig -->
+    <xacro:include filename="$(find rs750_description)/urdf/rs750_rig.gazebo"/>
 
     <gazebo>
         <!-- ROS control -->
@@ -69,39 +71,6 @@
             <upward>0 1 0</upward>
             <cp>-0.06 0 -0.2</cp>
             <link_name>rudder_link</link_name>
-            <radial_symmetry>true</radial_symmetry>
-            <topic>lift_drag</topic>
-        </plugin> 
-
-        <!-- Sail plugins  -->
-        <plugin name="main_sail_liftdrag" filename="libSailPlugin.so">
-            <a0>0.0</a0>
-            <cla>6.2832</cla>
-            <alpha_stall>0.1592</alpha_stall>
-            <cla_stall>-0.7083</cla_stall>
-            <cda>0.63662</cda>
-            <area>1.81</area>
-            <fluid_density>1.2</fluid_density>
-            <forward>1 0 0</forward>
-            <upward>0 1 0</upward>
-            <cp>-0.30875 0 1.30625</cp>
-            <link_name>main_sail_link</link_name>
-            <radial_symmetry>true</radial_symmetry>
-            <topic>lift_drag</topic>
-        </plugin>
-
-        <plugin name="fore_sail_liftdrag" filename="libSailPlugin.so">
-            <a0>0.0</a0>
-            <cla>6.2832</cla>
-            <alpha_stall>0.1592</alpha_stall>
-            <cla_stall>-0.7083</cla_stall>
-            <cda>0.63662</cda>
-            <area>1.43</area>
-            <fluid_density>1.2</fluid_density>
-            <forward>1 0 0</forward>
-            <upward>0 1 0</upward>
-            <cp>-0.605666667 0 1.20528</cp>
-            <link_name>fore_sail_link</link_name>
             <radial_symmetry>true</radial_symmetry>
             <topic>lift_drag</topic>
         </plugin>
