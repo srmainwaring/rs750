@@ -19,6 +19,7 @@ add_compile_options(-std=c++11)
 # Find dependent catkin packages
 
 find_package(catkin REQUIRED COMPONENTS
+    control_toolbox
     dynamic_reconfigure
     geometry_msgs
     hardware_interface
@@ -51,6 +52,7 @@ catkin_package(
     LIBRARIES
         rs750_base
     CATKIN_DEPENDS
+        control_toolbox
         dynamic_reconfigure
         geometry_msgs
         hardware_interface
@@ -71,15 +73,24 @@ include_directories(
 
 # Library
 add_library(rs750_controller
+    src/course_controller.cpp
     src/hardware.cpp
 )
 target_link_libraries(rs750_controller ${catkin_LIBRARIES})
+
+# Executable
+add_executable(course_controller_node
+    src/course_controller_node.cpp
+)
+target_link_libraries(course_controller_node rs750_controller ${catkin_LIBRARIES})
+add_dependencies(course_controller_node rs750_controller)
 
 ################################################################################
 # Install
 
 install(TARGETS
     rs750_controller
+    course_controller_node
     RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
     LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
     ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})

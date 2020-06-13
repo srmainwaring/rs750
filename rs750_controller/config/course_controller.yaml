@@ -1,3 +1,10 @@
 # Course controller parameters
 
+# Control loop frequency
 control_frequency: 20
+
+# PID settings for the course_controller_node 
+course_controller_node:
+    p: 10
+    i: 0
+    d: 0

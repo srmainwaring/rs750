@@ -10,8 +10,17 @@ from rs750_controller.cfg import CourseControllerConfig
 from geometry_msgs.msg import Vector3Stamped
 from std_msgs.msg import Float64
 
+
+
 class CourseController(object):
     ''' Simple course controller    
+
+    
+    /imu/rpy (geometry_msgs/Vector3Stamped)
+    /imu/rpy/filtered (geometry_msgs/Vector3Stamped)
+    /imu/rpy/raw (geometry_msgs/Vector3Stamped)
+
+
     '''
 
     def __init__(self):
@@ -23,6 +32,8 @@ class CourseController(object):
         # Subscribers
         # self._app_wind_msg = Vector3Stamped()
         # self._app_wind_sub = rospy.Subscriber('/wind/apparent', Vector3Stamped, self._app_wind_cb)
+        self._rpy_msg = Vector3Stamped()
+        self._rpy_sub = rospy.Subscriber('/imu/rpy/filtered', Vector3Stamped, self._rpy_cb)
 
         # Publishers
         # self._main_sail_cmd_msg = Float64()
@@ -42,15 +53,17 @@ class CourseController(object):
 
         time = event.current_real
 
-        # rospy.loginfo('update...')
+        # Logging
+        rospy.loginfo('rpy: ({:.2f}, {:.2f}, {:.2f})'.format(
+            self._rpy_msg.vector.x, self._rpy_msg.vector.y, self._rpy_msg.vector.z))
 
         # Publish the position commands 
         # self._main_sail_pub.publish(self._main_sail_cmd_msg)
 
-    # def _app_wind_cb(self, msg):
-    #     '''Capture the current state of the apparent wind'''
+    def _rpy_cb(self, msg):
+        '''Capture the current state of the rpy angles'''
 
-    #     self._app_wind_msg = msg
+        self._rpy_msg = msg
 
     def _dynamic_reconfig_cb(self, config, level):
         '''Dynamic reconfigure callback'''

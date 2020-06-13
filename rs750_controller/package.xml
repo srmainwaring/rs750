@@ -12,6 +12,7 @@
 
     <buildtool_depend>catkin</buildtool_depend>
 
+    <depend>control_toolbox</depend>
     <depend>dynamic_reconfigure</depend>
     <depend>geometry_msgs</depend>
     <depend>hardware_interface</depend>
