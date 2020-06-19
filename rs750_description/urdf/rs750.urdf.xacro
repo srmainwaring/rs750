@@ -213,8 +213,8 @@
 
     <!-- Preserve fixed joint as the keel_fin_link has an associated plugin -->
     <gazebo reference="keel_fin_joint">
-        <!-- <disableFixedJointLumping>true</disableFixedJointLumping>  -->
-        <!-- <preserveFixedJoint>true</preserveFixedJoint> -->
+        <disableFixedJointLumping>true</disableFixedJointLumping> 
+        <preserveFixedJoint>true</preserveFixedJoint>
     </gazebo>
 
     <!-- Keel bulb -->
