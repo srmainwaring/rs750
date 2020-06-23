@@ -3,6 +3,8 @@
 <launch>
     <arg name="rqt_config" default="$(find rs750_viz)/config/robot.perspective" />
 
-    <node pkg="rqt_gui" type="rqt_gui"  name="rqt_gui" args="--perspective-file $(arg rqt_config)">
-    </node>    
+    <group ns='rqt'>
+        <node pkg="rqt_gui" type="rqt_gui"  name="rqt_gui" args="--perspective-file $(arg rqt_config)">
+        </node>    
+    </group>
 </launch>
