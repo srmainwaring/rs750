@@ -3,7 +3,7 @@
 <launch>
     <arg name="model" default="$(find rs750_description)/urdf/rs750.urdf.xacro" />
     <arg name="use_gui" default="true" />
-    <arg name="rvizconfig" default="$(find rs750_viz)/rviz/model.rviz" />
+    <arg name="rvizconfig" default="$(find rs750_viz)/config/model.rviz" />
 
     <!-- Load the robot description -->
     <include file="$(find rs750_description)/launch/description.launch">
