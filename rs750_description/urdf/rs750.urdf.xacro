@@ -48,6 +48,7 @@
     <xacro:include filename="$(find rs750_description)/urdf/rs750_materials.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_inertials.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_anemometer.xacro"/>
+    <xacro:include filename="$(find rs750_description)/urdf/rs750_camera.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_imu.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_magnetic.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_rig.xacro"/>
@@ -319,5 +320,9 @@
     <!-- Magnetometer  -->
     <xacro:magnetic_link />
     <xacro:magnetic_joint x="0.0" y="0.0" z="0.01" yaw="0" />
+
+    <!-- Camera  -->
+    <xacro:camera_link />
+    <xacro:camera_joint x="0.5" y="0.0" z="0.3" yaw="0" />
 
 </robot>
