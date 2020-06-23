@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
 <!-- Launch rqt_image_view with the robot camera topic-->
 <launch>
-    <arg name="topic" default="/camera/rgb/image_raw" />
+    <arg name="c" default="/camera/rgb/image_raw" />
 
     <node pkg="rqt_image_view" type="rqt_image_view"  name="rqt_image_view">
-        <param name="topic" type="string" value="$(arg topic)" />
+        <param name="image" type="string" value="$(arg image)" />
     </node>    
 </launch>

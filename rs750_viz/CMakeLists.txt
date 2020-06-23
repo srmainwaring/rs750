@@ -20,6 +20,6 @@ catkin_package(
 # Install
 
 install(
-  DIRECTORY launch rviz
+  DIRECTORY config launch
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
