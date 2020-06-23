@@ -1,6 +1,7 @@
 # RS750 Robot Model
 
-A robot model for a Racing Sparrow 750 yacht.
+A robot model for designer Bryn Heveldt's Racing Sparrow 750 yacht
+[http://www.racingsparrow.co.nz/](http://www.racingsparrow.co.nz/).
 
 ## Overview
 
@@ -37,7 +38,20 @@ the plugins are found and load correctly.
 
 ## License
 
-BSD 3 Clause
+This is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This software is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+[GNU General Public License](LICENSE) for more details.
 
 ## Acknowledgments
+
+The Racing Sparrow 750 was designed by Bryn Heveldt and is used here with his kind permission.
+The model plans and original 3D CAD files are available at:
+
+- [Racing Sparrow Model RC Yachts](http://www.racingsparrow.co.nz/theboat/)
 

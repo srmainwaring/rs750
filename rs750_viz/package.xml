@@ -4,14 +4,13 @@
     <version>0.0.0</version>
     <description>Visualisation configuration a RS750 yacht</description>
     <maintainer email="rhys.mainwaring@me.com">Rhys Mainwaring</maintainer>
-    <license>BSD-3-Clause</license>
+    <license>GPLv3</license>
     <url type="website">https://github.com/srmainwaring/rs750</url>
     <url type="repository">https://github.com/srmainwaring/rs750</url>
     <url type="bugtracker">https://github.com/srmainwaring/rs750/issues</url>
     <author email="rhys.mainwaring@me.com">Rhys Mainwaring</author>
     <buildtool_depend>catkin</buildtool_depend>
     <build_depend>roslaunch</build_depend>
-
     <exec_depend>joint_state_publisher</exec_depend>
     <exec_depend>robot_state_publisher</exec_depend>
     <exec_depend>roslaunch</exec_depend>
