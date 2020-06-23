@@ -39,7 +39,6 @@ catkin_python_setup()
 # Dynamic reconfigure
 
 generate_dynamic_reconfigure_options(
-    cfg/CourseController.cfg
     cfg/SailController.cfg
 )
 
@@ -73,24 +72,15 @@ include_directories(
 
 # Library
 add_library(rs750_controller
-    src/course_controller.cpp
     src/hardware.cpp
 )
 target_link_libraries(rs750_controller ${catkin_LIBRARIES})
-
-# Executable
-add_executable(course_controller_node
-    src/course_controller_node.cpp
-)
-target_link_libraries(course_controller_node rs750_controller ${catkin_LIBRARIES})
-add_dependencies(course_controller_node rs750_controller)
 
 ################################################################################
 # Install
 
 install(TARGETS
     rs750_controller
-    course_controller_node
     RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
     LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
     ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
@@ -99,7 +89,6 @@ install(DIRECTORY include/rs750_controller/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
 
 catkin_install_python(PROGRAMS
-    nodes/course_controller
     nodes/sail_controller
     nodes/sail_controller_config
     scripts/twist_translate.py

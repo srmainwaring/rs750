@@ -43,7 +43,6 @@ namespace rs750_controller
 
         // ros_control interfaces: joints, position for rudder and sail trim.
         hardware_interface::JointStateInterface joint_state_interface_;
-        hardware_interface::VelocityJointInterface velocity_joint_interface_;
         hardware_interface::PositionJointInterface position_joint_interface_;
 
         // ROS parameters
@@ -52,7 +51,7 @@ namespace rs750_controller
         std::vector<double> rudder_joint_positions_;
         std::vector<double> rudder_joint_velocities_;
         std::vector<double> rudder_joint_efforts_;
-        std::vector<double> rudder_joint_velocity_commands_;
+        std::vector<double> rudder_joint_position_commands_;
         std::vector<std::string> rudder_joint_names_;
 
         // Sail joints - position limit controlled

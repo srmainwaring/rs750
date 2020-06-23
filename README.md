@@ -17,8 +17,8 @@ and prototyping ROS packages for robotic sailing vessels.
 Update the Gazebo plugin path:
 
 ```bash
-# Source the Gazebo environment (add this to ~/.zprofile)
-source /usr/local/share/gazebo-11/setup.sh
+# Source the Gazebo environment (add this to ~/.bash_profile)
+source /usr/local/share/gazebo/setup.sh
 
 # Add the workspace libraries to the plugin path
 export GAZEBO_PLUGIN_PATH=${PWD}/devel/lib:$GAZEBO_PLUGIN_PATH
