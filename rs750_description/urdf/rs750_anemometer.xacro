@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<!-- 
+  Copyright (C) 2020  Rhys Mainwaring
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!--  xacro macros for anemometer.
+
+ -->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="anemometer_link"> 
+        <link name="anemometer_link">
+            <visual>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <geometry>
+                    <cylinder length="0.05" radius="0.02" />
+                </geometry>
+                <material name="green" />
+            </visual>
+            <collision>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <geometry>
+                    <cylinder length="0.05" radius="0.02" />
+                </geometry>
+            </collision>
+            <xacro:solid_cylinder_inertial rpy="0 0 0" xyz="0 0 0"
+                mass="0.01" length="0.05" radius="0.02" />
+        </link>
+
+        <gazebo reference="anemometer_link">
+            <material>Gazebo/Green</material>
+
+            <sensor type="anemometer" name="anemometer_sensor">
+                <always_on>true</always_on>
+                <update_rate>50</update_rate>
+                <visualize>true</visualize>
+                <topic>sensors/anemometer</topic>
+                <plugin filename="libgazebo_ros_anemometer.so" name="anemometer_plugin">
+                    <robotNamespace>/</robotNamespace>
+                    <frameId>anemometer_link</frameId>
+                    <topicName>wind/apparent</topicName>
+                </plugin>
+            </sensor>
+        </gazebo> 
+    </xacro:macro>
+
+    <xacro:macro name="anemometer_joint" params="x y z yaw" > 
+        <joint name="anemometer_joint" type="fixed">
+            <origin rpy="0 0 ${yaw}" xyz="${x} ${y} ${z}"/>
+            <parent link="base_link" />
+            <child link="anemometer_link" />
+        </joint>
+
+        <gazebo reference="anemometer_joint">
+            <!-- <preserveFixedJoint>true</preserveFixedJoint> -->
+        </gazebo>
+    </xacro:macro>
+
+</robot>

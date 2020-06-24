@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>rs750_description</name>
+    <version>0.1.0</version>
+    <description>URDF and meshes for a Racing Sparrow 750 yacht</description>
+    <maintainer email="rhys.maiwaring@me.com">Rhys Mainwaring</maintainer>
+    <license>GPLv3</license>
+    <url type="website">https://github.com/srmainwaring/rs750</url>
+    <url type="repository">https://github.com/srmainwaring/rs750</url>
+    <url type="bugtracker">https://github.com/srmainwaring/rs750/issues</url>
+    <author email="rhys.maiwaring@me.com">Rhys Mainwaring</author>
+    <buildtool_depend>catkin</buildtool_depend>
+    <depend>urdf</depend>
+    <depend>xacro</depend>
+    <exec_depend>roslaunch</exec_depend>
+</package>
+

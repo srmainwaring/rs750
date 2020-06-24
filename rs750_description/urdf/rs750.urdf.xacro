@@ -1,0 +1,309 @@
+<?xml version="1.0" ?>
+<!-- 
+  Copyright (C) 2020  Rhys Mainwaring
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!-- Robot description for a RS750 yacht
+
+    Conventions    
+    ROS REP 105 Coordinate Frames for Mobile Platforms
+    length      x-axis dimension
+    width       y-axis dimension
+    depth       z-axis dimension
+
+ -->
+<robot name="rs750" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find rs750_description)/urdf/rs750_materials.xacro"/>
+    <xacro:include filename="$(find rs750_description)/urdf/rs750_inertials.xacro"/>
+    <xacro:include filename="$(find rs750_description)/urdf/rs750_anemometer.xacro"/>
+    <xacro:include filename="$(find rs750_description)/urdf/rs750_camera.xacro"/>
+    <xacro:include filename="$(find rs750_description)/urdf/rs750_imu.xacro"/>
+    <xacro:include filename="$(find rs750_description)/urdf/rs750_magnetic.xacro"/>
+    <xacro:include filename="$(find rs750_description)/urdf/rs750_rig.xacro"/>
+    <xacro:include filename="$(find rs750_description)/urdf/rs750.gazebo"/>
+
+    <!-- Constants for robot dimensions -->
+    <xacro:property name="scale" value="3.2" />
+    <xacro:property name="volume_scale" value="${scale * scale * scale}" />
+
+    <xacro:property name="hull_mass" value="${1.0 * volume_scale}" />
+    <xacro:property name="hull_length" value="${0.770 * scale}" />  
+    <xacro:property name="hull_width" value="${0.150 * scale}" />  
+    <xacro:property name="hull_depth" value="${0.080 * scale}" />
+
+    <xacro:property name="keel_fin_mass" value="${0.250 * volume_scale}" />
+    <xacro:property name="keel_fin_length" value="${0.040 * scale}" />
+    <xacro:property name="keel_fin_width" value="${0.006 * scale}" /> 
+    <xacro:property name="keel_fin_depth" value="${0.270 * scale}" />
+
+    <xacro:property name="keel_bulb_mass" value="${1.30 * volume_scale}" />
+    <xacro:property name="keel_bulb_length" value="${0.215 * scale}" />
+    <xacro:property name="keel_bulb_radius" value="${0.015 * scale}" /> 
+
+    <xacro:property name="rudder_mass" value="${0.100 * volume_scale}" />
+    <xacro:property name="rudder_length" value="${0.040 * scale}" />
+    <xacro:property name="rudder_width" value="${0.006 * scale}" /> 
+    <xacro:property name="rudder_depth" value="${0.160 * scale}" />
+
+    <!-- Rough estimates for intertial -->
+    <xacro:property name="main_sail_mass" value="${0.100 * volume_scale}" />
+    <xacro:property name="main_sail_length" value="${0.200 * scale}" />
+    <xacro:property name="main_sail_width" value="${0.006 * scale}" /> 
+    <xacro:property name="main_sail_depth" value="${0.900 * scale}" />
+
+    <!-- Rough estimates for intertial -->
+    <xacro:property name="fore_sail_mass" value="${0.0500 * volume_scale}" />
+    <xacro:property name="fore_sail_length" value="${0.100 * scale}" />
+    <xacro:property name="fore_sail_width" value="${0.006 * scale}" /> 
+    <xacro:property name="fore_sail_depth" value="${0.700 * scale}" />
+
+    <!-- The base link - the reference link for the entire model -->
+    <link name="base_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+            <material name="orange" />
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+        <!-- Remove inertial in base_link:
+            [ WARN ] The root link base_link has an inertia specified in the URDF,
+            but KDL does not support a root link with an inertia.
+            As a workaround, you can add an extra dummy link to your URDF.
+        -->
+        <!--
+        <xacro:solid_cuboid_inertial 
+            rpy="0 0 0" xyz="0 0 0"
+            mass="0.01"
+            x="0.01" y="0.01" z="0.01" />
+        -->
+    </link>
+
+    <gazebo reference="base_link">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <!-- Hull  -->
+    <link name="hull_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://rs750_description/meshes/rs750_hull.stl" />
+            </geometry>
+            <material name="red" />
+        </visual>
+
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://rs750_description/meshes/rs750_hull_collision_3.stl" />
+            </geometry>
+        </collision>
+        <xacro:solid_cuboid_inertial 
+            rpy="0 0 0" xyz="0 0 0"
+            mass="${hull_mass}"
+            x="${hull_length}" y="${hull_width}" z="${hull_depth}" />
+    </link>
+
+    <gazebo reference="hull_link">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <joint name="hull_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <parent link="base_link" />
+        <child link="hull_link" />
+    </joint>
+
+    <gazebo reference="hull_joint">
+    </gazebo>
+
+    <!-- Deck  (visual only) -->
+    <link name="deck_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://rs750_description/meshes/rs750_deck.stl" />
+            </geometry>
+            <material name="dark_gray" />
+        </visual>
+    </link>
+
+    <gazebo reference="deck_link">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <joint name="deck_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <parent link="base_link" />
+        <child link="deck_link" />
+    </joint>
+
+    <gazebo reference="deck_joint">
+    </gazebo>
+
+    <!-- Keel fin -->
+    <link name="keel_fin_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://rs750_description/meshes/rs750_keel_fin.stl" />
+            </geometry>
+            <material name="yellow" />
+        </visual>
+
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://rs750_description/meshes/rs750_keel_fin_collision_2.stl" />
+            </geometry>
+        </collision>
+        <xacro:solid_cuboid_inertial 
+            rpy="0 0 0" xyz="0 0 0"
+            mass="${keel_fin_mass}"
+            x="${keel_fin_length}" y="${keel_fin_width}" z="${keel_fin_depth}" />
+    </link>
+
+    <gazebo reference="keel_fin_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <joint name="keel_fin_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="-0.16255 0.0 -0.54053"/>
+        <parent link="base_link" />
+        <child link="keel_fin_link" />
+    </joint>
+
+    <!-- Preserve fixed joint as the keel_fin_link has an associated plugin -->
+    <gazebo reference="keel_fin_joint">
+        <disableFixedJointLumping>true</disableFixedJointLumping> 
+        <preserveFixedJoint>true</preserveFixedJoint>
+    </gazebo>
+
+    <!-- Keel bulb -->
+    <link name="keel_bulb_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://rs750_description/meshes/rs750_keel_bulb.stl" />
+            </geometry>
+            <material name="yellow" />
+        </visual>
+
+        <collision>
+            <origin rpy="0 ${math_pi_over_2} 0" xyz="0 0 0" />
+            <geometry>
+                <cylinder length="${keel_bulb_length}" radius="${keel_bulb_radius}" />
+            </geometry>
+        </collision>
+        <xacro:solid_cylinder_inertial
+            rpy="0 ${math_pi_over_2} 0" xyz="0 0 0"
+            mass="${keel_bulb_mass}"
+            radius="${keel_bulb_radius}" length="${keel_bulb_length}" />
+    </link>
+
+    <gazebo reference="keel_bulb_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <joint name="keel_bulb_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="-0.26638 0.0 -1.08674"/>
+        <parent link="base_link" />
+        <child link="keel_bulb_link" />
+    </joint>
+
+    <gazebo reference="keel_bulb_joint">
+    </gazebo>
+
+    <!-- Rudder -->
+    <link name="rudder_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://rs750_description/meshes/rs750_rudder.stl" />
+            </geometry>
+            <material name="yellow" />
+        </visual>
+
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <mesh filename="package://rs750_description/meshes/rs750_rudder_collision_3.stl" />
+            </geometry>
+        </collision>
+        <xacro:solid_cuboid_inertial 
+            rpy="0 0 0" xyz="0 0 0"
+            mass="${rudder_mass}"
+            x="${rudder_length}" y="${rudder_width}" z="${rudder_depth}" />
+    </link>
+
+    <gazebo reference="rudder_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <joint name="rudder_joint" type="revolute">
+        <origin rpy="0 0 0" xyz="-1.2436 0.0 -0.0487"/>
+        <axis xyz="0 0 1" />
+        <limit
+            lower="${-math_pi_over_2}"
+            upper="${math_pi_over_2}"
+            effort="1000"
+            velocity="1000"
+        />
+        <parent link="base_link" />
+        <child link="rudder_link" />
+    </joint>
+
+    <transmission name="rudder_transmission" >
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="rudder_actuator">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="rudder_joint">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+
+    <gazebo reference="rudder_joint">
+        <provideFeedback>true</provideFeedback>
+    </gazebo>
+
+    <!-- Rig -->
+    <xacro:rig base_link="base_link" scale="${scale}" x="0.0" y="0.0" z="0.0"/>
+
+    <!-- Anemometer (mast head) -->
+    <xacro:anemometer_link />
+    <xacro:anemometer_joint x="0.0" y="0.0" z="4.0" yaw="0" />
+
+    <!-- IMU  -->
+    <xacro:imu_link />
+    <xacro:imu_joint x="0.0" y="0.0" z="0.01" yaw="0" />
+
+    <!-- Magnetometer  -->
+    <xacro:magnetic_link />
+    <xacro:magnetic_joint x="0.0" y="0.0" z="0.01" yaw="0" />
+
+    <!-- Camera  -->
+    <xacro:camera_link />
+    <xacro:camera_joint x="0.5" y="0.0" z="0.3" yaw="0" />
+
+</robot>
