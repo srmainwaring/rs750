@@ -58,7 +58,7 @@ $ catkin build
 $ source devel/setup.bash
 
 # Add the workspace libraries to the plugin path
-$ export GAZEBO_PLUGIN_PATH=${PWD}/devel/lib:$GAZEBO_PLUGIN_PATH
+$ export GAZEBO_PLUGIN_PATH=$(PWD)/devel/lib:$GAZEBO_PLUGIN_PATH
 
 # Check the Gazebo environment variables
 $ printenv |grep GAZEBO
