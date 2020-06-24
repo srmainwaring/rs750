@@ -43,7 +43,7 @@ $ mkdir -p <catkin_ws>/src
 $ cd <catkin_ws>/src
 $ git clone https://github.com/srmainwaring/asv_sim.git
 $ git clone https://github.com/srmainwaring/asv_wave_sim.git
-$ git https://github.com/ccny-ros-pkg/imu_tools.git
+$ git clone https://github.com/ccny-ros-pkg/imu_tools.git
 
 # Clone this repo
 $ git clone https://github.com/srmainwaring/rs750.git
@@ -58,7 +58,7 @@ $ catkin build
 $ source devel/setup.bash
 
 # Add the workspace libraries to the plugin path
-$ export GAZEBO_PLUGIN_PATH=$(PWD)/devel/lib:$GAZEBO_PLUGIN_PATH
+$ export GAZEBO_PLUGIN_PATH=$(pwd)/devel/lib:$GAZEBO_PLUGIN_PATH
 
 # Check the Gazebo environment variables
 $ printenv |grep GAZEBO
