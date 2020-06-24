@@ -14,4 +14,7 @@
     <exec_depend>rs750_description</exec_depend>
     <exec_depend>rs750_gazebo</exec_depend>
     <exec_depend>rs750_viz</exec_depend>
+    <export>
+      <metapackage />
+    </export>
 </package>
