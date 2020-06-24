@@ -20,7 +20,7 @@ and prototyping ROS packages for robotic sailing vessels.
 You will need a working installation of ROS and Gazebo in order to use this package,
 we recommend `ros-melodic-desktop-full`.
 
-To use the model in simulation you will also need to the marine simulation libraries
+To use the model in simulation you will also need to have the marine simulation libraries
 `asv_sim` and `asv_wave_sim` listed in the installation instructions below.
 
 ## Installation
