@@ -2,3 +2,11 @@
     uri: https://github.com/srmainwaring/asv_wave_sim.git
     local-name: asv_wave_sim
     version: feature/fft_waves
+- git:
+    uri: https://github.com/srmainwaring/asv_sim.git
+    local-name: asv_wave_sim
+    version: master
+- git:
+    uri: https://github.com/ccny-ros-pkg/imu_tools.git
+    local-name: imu_tools
+    version: melodic

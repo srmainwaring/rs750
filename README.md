@@ -85,7 +85,7 @@ the plugins are found and load correctly.
 
 |    | Melodic |
 |--- |--- |
-| rs750 | [![Build Status](https://travis-ci.org/srmainwaring/rs750.svg?branch=feature%2Ftravis-ci)](https://travis-ci.org/srmainwaring/rs750) |
+| rs750 | [![Build Status](https://travis-ci.org/srmainwaring/rs750.svg?branch=feature%2Fwrsc-devel)](https://travis-ci.org/srmainwaring/rs750) |
 
 
 ### Release Job Status
