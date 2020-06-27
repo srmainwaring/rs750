@@ -81,6 +81,20 @@ $ roslaunch rs750_gazebo rs750_ocean_world.launch verbose:=true
 The `verbose:=true` flag provides additional information including whether
 the plugins are found and load correctly.
 
+### Develop Job Status
+
+|    | Melodic |
+|--- |--- |
+| rs750 | [![Build Status](https://travis-ci.org/srmainwaring/rs750.svg?branch=feature%2Fwrsc-devel)](https://travis-ci.org/srmainwaring/rs750) |
+
+
+### Release Job Status
+
+|    | Melodic |
+|--- |--- |
+| rs705 | [![Build Status](https://travis-ci.org/srmainwaring/rs750.svg?branch=master)](https://travis-ci.org/srmainwaring/rs750) |
+
+
 ## License
 
 This is free software: you can redistribute it and/or modify
