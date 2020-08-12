@@ -2,16 +2,6 @@ cmake_minimum_required(VERSION 3.0.2)
 project(rs750_controller)
 
 ################################################################################
-# Preprocessor options
-option(CURIO_WITH_PYTHON_HAL "Use the Python HAL" OFF)
-
-if(CURIO_WITH_PYTHON_HAL)
-    add_definitions(-DCURIO_USE_PYTHON_HAL=1)
-else()
-    add_definitions(-DCURIO_USE_PYTHON_HAL=0)
-endif()
-
-################################################################################
 # Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
 
