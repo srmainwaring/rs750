@@ -58,9 +58,9 @@
     </spherical_coordinates>
 
     <!-- World models  -->
-    <include>
+    <!-- <include>
       <uri>model://mumbles_head</uri>
-    </include>
+    </include> -->
 
     <include>
       <uri>model://ocean</uri>

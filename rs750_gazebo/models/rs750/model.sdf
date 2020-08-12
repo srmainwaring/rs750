@@ -22,10 +22,14 @@
       gz sdf -p rs750.urdf > rs750.sdf    
 
       Custom edits:
+
+      1. Media location
         replace:  model://rs750_description/meshes
         with:     model://rs750/meshes
 
+      2. Disable ROS plugins
 
+      3. Add ArduPilot plugins
 
      -->
     <model name='rs750'>
@@ -740,5 +744,81 @@
         <xyzOffset>0 0 -0.01</xyzOffset>
         <rpyOffset>0 -0 0</rpyOffset>
       </plugin> -->
+
+      <plugin name="ardupilot_plugin" filename="libArduPilotPlugin.so">
+        <!-- MAVLink / port settings -->
+        <fdm_addr>127.0.0.1</fdm_addr>
+        <fdm_port_in>9002</fdm_port_in>
+        <fdm_port_out>9003</fdm_port_out>
+        <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
+
+        <!-- Coordinate frames required for APM
+
+            Change model and gazebo from XYZ to XY-Z coordinates
+        
+            Math constants:
+              PI = 3.141593
+          -->
+        <modelXYZToAirplaneXForwardZDown>0 0 0 3.141593 0 0</modelXYZToAirplaneXForwardZDown>
+        <gazeboXYZToNED>0 0 0 3.141593 0 0</gazeboXYZToNED>
+
+        <!-- Sensors -->
+        <imuName>base_link::imu_sensor</imuName>
+
+        <!-- Control / channels
+
+            incoming control command [0, 1]
+            so offset it by 0 to get [0, 1]
+            and divide max target by 1.
+            offset = 0
+            multiplier = 838 max rpm / 1 = 838
+          -->
+        <control channel="0">
+          <jointName>fore_sail_joint</jointName>
+          <useForce>0</useForce>
+          <cmd_max>10</cmd_max>
+          <cmd_min>-10</cmd_min>
+          <multiplier>70</multiplier>
+          <offset>0</offset>
+          <type>POSITION</type>
+          <p_gain>1</p_gain>
+          <i_gain>0</i_gain>
+          <d_gain>0</d_gain>
+          <i_max>0</i_max>
+          <i_min>0</i_min>
+        </control>
+
+        <control channel="0">
+          <jointName>main_sail_joint</jointName>
+          <useForce>0</useForce>
+          <cmd_max>10</cmd_max>
+          <cmd_min>-10</cmd_min>
+          <multiplier>70</multiplier>
+          <offset>0</offset>
+          <type>POSITION</type>
+          <p_gain>1</p_gain>
+          <i_gain>0</i_gain>
+          <d_gain>0</d_gain>
+          <i_max>0</i_max>
+          <i_min>0</i_min>
+        </control>
+
+        <control channel="1">
+          <jointName>rudder_joint</jointName>
+          <useForce>0</useForce>
+          <cmd_max>10</cmd_max>
+          <cmd_min>-10</cmd_min>
+          <multiplier>70</multiplier>
+          <offset>0</offset>
+          <type>POSITION</type>
+          <p_gain>1</p_gain>
+          <i_gain>0</i_gain>
+          <d_gain>0</d_gain>
+          <i_max>0</i_max>
+          <i_min>0</i_min>
+        </control>
+
+      </plugin>      
+
     </model>
 </sdf>
