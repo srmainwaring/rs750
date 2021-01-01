@@ -85,14 +85,14 @@ the plugins are found and load correctly.
 
 |    | Melodic |
 |--- |--- |
-| rs750 | [![Build Status](https://travis-ci.org/srmainwaring/rs750.svg?branch=feature%2Fwrsc-devel)](https://travis-ci.org/srmainwaring/rs750) |
+| rs750 | [![Build Status](https://travis-ci.com/srmainwaring/rs750.svg?branch=feature%2Fwrsc-devel)](https://travis-ci.com/srmainwaring/rs750) |
 
 
 ### Release Job Status
 
 |    | Melodic |
 |--- |--- |
-| rs705 | [![Build Status](https://travis-ci.org/srmainwaring/rs750.svg?branch=master)](https://travis-ci.org/srmainwaring/rs750) |
+| rs705 | [![Build Status](https://travis-ci.com/srmainwaring/rs750.svg?branch=master)](https://travis-ci.com/srmainwaring/rs750) |
 
 
 ## License
