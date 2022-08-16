@@ -734,6 +734,18 @@
         <plugin
           filename="gz-waves1-hydrodynamics-system"
           name="gz::sim::systems::Hydrodynamics">
+
+          <!-- <enable>rs750::base_link::base_link::base_link_collision</enable> -->
+          <!-- <enable>rs750::base_link::base_link_fixed_joint_lump__anemometer_link_collision_1</enable> -->
+          <!-- <enable>rs750::base_link::base_link_fixed_joint_lump__camera_link_collision_2</enable> -->
+          <enable>rs750::base_link::base_link_fixed_joint_lump__hull_link_collision_3</enable>
+          <!-- <enable>rs750::base_link::base_link_fixed_joint_lump__imu_link_collision_4</enable> -->
+          <!-- <enable>rs750::base_link::base_link_fixed_joint_lump__keel_bulb_link_collision_5</enable> -->
+          <!-- <enable>rs750::base_link::base_link_fixed_joint_lump__magnetic_link_collision_6</enable> -->
+          <!-- <enable>rs750::fore_sail_link::fore_sail_link_collision</enable> -->
+          <!-- <enable>rs750::main_sail_link::main_sail_link_collision</enable> -->
+          <!-- <enable>rs750::keel_fin_link::keel_fin_link_collision</enable> -->
+
           <hydrodynamics>
             <damping_on>1</damping_on>
             <viscous_drag_on>1</viscous_drag_on>
