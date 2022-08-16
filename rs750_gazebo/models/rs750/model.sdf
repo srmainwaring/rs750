@@ -164,10 +164,13 @@
               </box>
             </geometry>
             <material>
-              <script>
+              <!-- <script>
                 <name>Gazebo/Orange</name>
                 <uri>file://media/materials/scripts/gazebo.material</uri>
-              </script>
+              </script> -->
+              <ambient>1 0.5088 0.0468 1</ambient>
+              <diffuse>1 0.5088 0.0468 1</diffuse>
+              <specular>0.5 0.5 0.5 1</specular>
             </material>
           </visual>
           <visual name='base_link_fixed_joint_lump__anemometer_link_visual_1'>
@@ -179,10 +182,13 @@
               </cylinder>
             </geometry>
             <material>
-              <script>
+              <!-- <script>
                 <name>Gazebo/Green</name>
                 <uri>file://media/materials/scripts/gazebo.material</uri>
-              </script>
+              </script> -->
+              <ambient>0 1 0 1</ambient>
+              <diffuse>0 1 0 1</diffuse>
+              <specular>0.1 0.1 0.1 1</specular>
             </material>
           </visual>
           <visual name='base_link_fixed_joint_lump__camera_link_visual_2'>
@@ -193,10 +199,13 @@
               </box>
             </geometry>
             <material>
-              <script>
+              <!-- <script>
                 <name>Gazebo/Green</name>
                 <uri>file://media/materials/scripts/gazebo.material</uri>
-              </script>
+              </script> -->
+              <ambient>0 1 0 1</ambient>
+              <diffuse>0 1 0 1</diffuse>
+              <specular>0.1 0.1 0.1 1</specular>
             </material>
           </visual>
           <visual name='base_link_fixed_joint_lump__deck_link_visual_3'>
@@ -208,10 +217,13 @@
               </mesh>
             </geometry>
             <material>
-              <script>
+              <!-- <script>
                 <name>Gazebo/Gray</name>
                 <uri>file://media/materials/scripts/gazebo.material</uri>
-              </script>
+              </script> -->
+              <ambient>0.3 0.3 0.3 1</ambient>
+              <diffuse>0.7 0.7 0.7 1</diffuse>
+              <specular>0.01 0.01 0.01 1.0</specular>
             </material>
           </visual>
           <visual name='base_link_fixed_joint_lump__hull_link_visual_4'>
@@ -223,10 +235,13 @@
               </mesh>
             </geometry>
             <material>
-              <script>
+              <!-- <script>
                 <name>Gazebo/Red</name>
                 <uri>file://media/materials/scripts/gazebo.material</uri>
-              </script>
+              </script> -->
+              <ambient>1 0 0 1</ambient>
+              <diffuse>1 0 0 1</diffuse>
+              <specular>0.1 0.1 0.1 1</specular>
             </material>
           </visual>
           <visual name='base_link_fixed_joint_lump__imu_link_visual_5'>
@@ -237,10 +252,13 @@
               </box>
             </geometry>
             <material>
-              <script>
+              <!-- <script>
                 <name>Gazebo/Green</name>
                 <uri>file://media/materials/scripts/gazebo.material</uri>
-              </script>
+              </script> -->
+              <ambient>0 1 0 1</ambient>
+              <diffuse>0 1 0 1</diffuse>
+              <specular>0.1 0.1 0.1 1</specular>
             </material>
           </visual>
           <visual name='base_link_fixed_joint_lump__keel_bulb_link_visual_6'>
@@ -252,10 +270,13 @@
               </mesh>
             </geometry>
             <material>
-              <script>
+              <!-- <script>
                 <name>Gazebo/Yellow</name>
                 <uri>file://media/materials/scripts/gazebo.material</uri>
-              </script>
+              </script> -->
+              <ambient>0.9725 0.9529 0.2078 1</ambient>
+              <diffuse>0.9725 0.9529 0.2078 1</diffuse>
+              <specular>0.9725 0.9529 0.2078 1</specular>
             </material>
           </visual>
           <visual name='base_link_fixed_joint_lump__magnetic_link_visual_7'>
@@ -275,28 +296,31 @@
               </mesh>
             </geometry>
             <material>
-              <script>
+              <!-- <script>
                 <name>Gazebo/Black</name>
                 <uri>file://media/materials/scripts/gazebo.material</uri>
-              </script>
+              </script> -->
+              <ambient>0 0 0 1</ambient>
+              <diffuse>0 0 0 1</diffuse>
+              <specular>0.1 0.1 0.1 1</specular>
             </material>
           </visual>
           <velocity_decay/>
           <velocity_decay/>
-          <sensor name='anemometer_sensor' type='anemometer'>
+          <!-- <sensor name='anemometer_sensor' type='anemometer'>
             <always_on>1</always_on>
             <update_rate>50</update_rate>
             <visualize>1</visualize>
-            <topic>sensors/anemometer</topic>
+            <topic>sensors/anemometer</topic> -->
             <!-- <plugin name='anemometer_plugin' filename='libgazebo_ros_anemometer.so'>
               <robotNamespace>/</robotNamespace>
               <frameId>anemometer_link</frameId>
               <topicName>wind/apparent</topicName>
             </plugin> -->
-            <pose frame=''>0 0 4 0 -0 0</pose>
-          </sensor>
+            <!-- <pose frame=''>0 0 4 0 -0 0</pose>
+          </sensor> -->
           <velocity_decay/>
-          <sensor name='camera' type='camera'>
+          <!-- <sensor name='camera' type='camera'>
             <always_on>1</always_on>
             <update_rate>30</update_rate>
             <camera name='camera'>
@@ -310,7 +334,7 @@
                 <near>0.02</near>
                 <far>300</far>
               </clip>
-            </camera>
+            </camera> -->
             <!-- <plugin name='camera_plugin' filename='libgazebo_ros_camera.so'>
               <alwaysOn>1</alwaysOn>
               <updateRate>0.0</updateRate>
@@ -325,8 +349,8 @@
               <distortionT1>0.0</distortionT1>
               <distortionT2>0.0</distortionT2>
             </plugin> -->
-            <pose frame=''>0.5 0 0.3 0 -0 0</pose>
-          </sensor>
+            <!-- <pose frame=''>0.5 0 0.3 0 -0 0</pose>
+          </sensor> -->
           <velocity_decay/>
           <velocity_decay/>
           <velocity_decay/>
@@ -397,10 +421,13 @@
               </mesh>
             </geometry>
             <material>
-              <script>
+              <!-- <script>
                 <name>Gazebo/GreyTransparent</name>
                 <uri>file://media/materials/scripts/gazebo.material</uri>
-              </script>
+              </script> -->
+              <ambient>0.5 0.5 0.5 0.75</ambient>
+              <diffuse>0.5 0.5 0.5 0.75</diffuse>
+              <specular>0.01 0.01 0.01 0.75</specular>
             </material>
           </visual>
           <gravity>1</gravity>
@@ -476,10 +503,13 @@
               </mesh>
             </geometry>
             <material>
-              <script>
+              <!-- <script>
                 <name>Gazebo/Yellow</name>
                 <uri>file://media/materials/scripts/gazebo.material</uri>
-              </script>
+              </script> -->
+              <ambient>0.9725 0.9529 0.2078 1</ambient>
+              <diffuse>0.9725 0.9529 0.2078 1</diffuse>
+              <specular>0.9725 0.9529 0.2078 1</specular>
             </material>
           </visual>
           <gravity>1</gravity>
@@ -549,10 +579,13 @@
               </mesh>
             </geometry>
             <material>
-              <script>
+              <!-- <script>
                 <name>Gazebo/GreyTransparent</name>
                 <uri>file://media/materials/scripts/gazebo.material</uri>
-              </script>
+              </script> -->
+              <ambient>0.5 0.5 0.5 0.75</ambient>
+              <diffuse>0.5 0.5 0.5 0.75</diffuse>
+              <specular>0.01 0.01 0.01 0.75</specular>
             </material>
           </visual>
           <gravity>1</gravity>
@@ -628,10 +661,13 @@
               </mesh>
             </geometry>
             <material>
-              <script>
+              <!-- <script>
                 <name>Gazebo/Yellow</name>
                 <uri>file://media/materials/scripts/gazebo.material</uri>
-              </script>
+              </script> -->
+              <ambient>0.9725 0.9529 0.2078 1</ambient>
+              <diffuse>0.9725 0.9529 0.2078 1</diffuse>
+              <specular>0.9725 0.9529 0.2078 1</specular>
             </material>
           </visual>
           <gravity>1</gravity>
@@ -665,7 +701,7 @@
             </ode>
           </physics>
         </joint>
-        <plugin name='main_sail_liftdrag' filename='libSailPlugin.so'>
+        <!-- <plugin name='main_sail_liftdrag' filename='libSailPlugin.so'>
           <a0>0.0</a0>
           <cla>6.2832</cla>
           <alpha_stall>0.1592</alpha_stall>
@@ -679,8 +715,8 @@
           <link_name>main_sail_link</link_name>
           <radial_symmetry>1</radial_symmetry>
           <topic>lift_drag</topic>
-        </plugin>
-        <plugin name='fore_sail_liftdrag' filename='libSailPlugin.so'>
+        </plugin> -->
+        <!-- <plugin name='fore_sail_liftdrag' filename='libSailPlugin.so'>
           <a0>0.0</a0>
           <cla>6.2832</cla>
           <alpha_stall>0.1592</alpha_stall>
@@ -694,25 +730,23 @@
           <link_name>fore_sail_link</link_name>
           <radial_symmetry>1</radial_symmetry>
           <topic>lift_drag</topic>
-        </plugin>
-        <!-- <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
-          <robotNamespace>/</robotNamespace>
-          <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
-          <legacyModeNS>0</legacyModeNS>
         </plugin> -->
-        <plugin name='hydrodynamics' filename='libHydrodynamicsPlugin.so'>
-          <wave_model>ocean</wave_model>
-          <damping_on>1</damping_on>
-          <viscous_drag_on>1</viscous_drag_on>
-          <pressure_drag_on>1</pressure_drag_on>
+        <plugin
+          filename="gz-waves1-hydrodynamics-system"
+          name="gz::sim::systems::Hydrodynamics">
+          <hydrodynamics>
+            <damping_on>1</damping_on>
+            <viscous_drag_on>1</viscous_drag_on>
+            <pressure_drag_on>1</pressure_drag_on>
+          </hydrodynamics>
           <markers>
-            <update_rate>30</update_rate>
+            <update_rate>10</update_rate>
             <water_patch>0</water_patch>
             <waterline>0</waterline>
             <underwater_surface>0</underwater_surface>
           </markers>
         </plugin>
-        <plugin name='keel_fin_liftdrag' filename='libFoilPlugin.so'>
+        <!-- <plugin name='keel_fin_liftdrag' filename='libFoilPlugin.so'>
           <a0>0.0</a0>
           <cla>6.2832</cla>
           <alpha_stall>0.1592</alpha_stall>
@@ -726,8 +760,8 @@
           <link_name>keel_fin_link</link_name>
           <radial_symmetry>1</radial_symmetry>
           <topic>lift_drag</topic>
-        </plugin>
-        <plugin name='rudder_liftdrag' filename='libFoilPlugin.so'>
+        </plugin> -->
+        <!-- <plugin name='rudder_liftdrag' filename='libFoilPlugin.so'>
           <a0>0.0</a0>
           <cla>6.2832</cla>
           <alpha_stall>0.1592</alpha_stall>
@@ -741,43 +775,19 @@
           <link_name>rudder_link</link_name>
           <radial_symmetry>1</radial_symmetry>
           <topic>lift_drag</topic>
-        </plugin>
-        <static>0</static>
-        <!-- <plugin name='magnetic_plugin' filename='libhector_gazebo_ros_magnetic.so'>
-          <updateRate>10.0</updateRate>
-          <frameId>magnetic_link</frameId>
-          <topicName>sensors/magnetic</topicName>
-          <offset>0 0 0</offset>
-          <drift>0.0 0.0 0.0</drift>
-          <gaussianNoise>1.3e-2 1.3e-2 1.3e-2</gaussianNoise>
-          <bodyName>base_link</bodyName>
-          <xyzOffset>0 0 -0.01</xyzOffset>
-          <rpyOffset>0 -0 0</rpyOffset>
         </plugin> -->
+        <static>0</static>
       
-        <plugin name="ardupilot_plugin" filename="libArduPilotPlugin.so">
-        <!-- MAVLink / port settings -->
+        <!-- <plugin name="ardupilot_plugin" filename="libArduPilotPlugin.so">
         <fdm_addr>127.0.0.1</fdm_addr>
         <fdm_port_in>9002</fdm_port_in>
         <fdm_port_out>9003</fdm_port_out>
         <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
 
-        <!-- Coordinate frames required for APM
-
-            Change model and gazebo from XYZ to XY-Z coordinates
-        
-            Math constants:
-              PI   = 3.141592
-              PI_2 = 1.570796
-              PI_4 = 0.785398
-          -->
         <modelXYZToAirplaneXForwardZDown>0 0 0 3.141593 0 0</modelXYZToAirplaneXForwardZDown>
         <gazeboXYZToNED>0 0 0 3.141593 0 0</gazeboXYZToNED>
 
-        <!-- Sensors -->
-        <imuName>base_link::imu_sensor</imuName>
-
-        <!-- Control / channels -->
+        <imuName>base_link::imu_sensor</imuName> -->
 
         <!-- SERVO1_FUNCTION 26 (GroundSteering)
              SERVO1_MIN 1000
@@ -786,7 +796,7 @@
              Input command in [0, 1]
              Target rudder position in [-PI/4, PI/4]
          -->
-        <control channel="0">
+        <!-- <control channel="0">
           <jointName>rudder_joint</jointName>
           <useForce>1</useForce>
           <multiplier>1.570796</multiplier>
@@ -799,7 +809,7 @@
           <i_min>-100</i_min>
           <cmd_max>1000</cmd_max>
           <cmd_min>-1000</cmd_min>
-        </control>
+        </control> -->
 
         <!-- SERVO4_FUNCTION 89 (MainSail)
              SERVO4_MIN 1000
@@ -811,10 +821,9 @@
              If the sails are allowed to sheet out too far 
              the boat will not gybe.
          -->
-        <control channel="3">
+        <!-- <control channel="3">
           <jointName>fore_sail_joint</jointName>
           <useForce>1</useForce>
-          <!-- <multiplier>1.570796</multiplier> -->
           <multiplier>1.39626</multiplier>
           <offset>0</offset>
           <type>POSITION_LIMIT</type>
@@ -830,7 +839,6 @@
         <control channel="3">
           <jointName>main_sail_joint</jointName>
           <useForce>1</useForce>
-          <!-- <multiplier>1.570796</multiplier> -->
           <multiplier>1.39626</multiplier>
           <offset>0</offset>
           <type>POSITION_LIMIT</type>
@@ -843,7 +851,7 @@
           <cmd_min>-1000</cmd_min>
         </control>
       
-      </plugin>      
+      </plugin> -->
 
     </model>
 </sdf>
