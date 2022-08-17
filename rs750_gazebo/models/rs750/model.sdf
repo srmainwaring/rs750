@@ -358,13 +358,13 @@
             <pose>0 0 0 3.141593 0 0</pose>
             <always_on>1</always_on>
             <update_rate>1000</update_rate>
-            <visualize>1</visualize>
+            <!-- <visualize>1</visualize>
             <topic>sensors/imu</topic>
             <imu>
               <topic>sensors/imu</topic>
               <angular_velocity/>
               <linear_acceleration/>
-            </imu>
+            </imu> -->
             <!-- <plugin name='imu_plugin' filename='libgazebo_ros_imu_sensor.so'>
               <gaussianNoise>0.0</gaussianNoise>
               <always_on>1</always_on>
@@ -701,6 +701,17 @@
             </ode>
           </physics>
         </joint>
+
+        <!-- Joint state and force plugins -->
+        <plugin filename="gz-sim-joint-state-publisher-system"
+          name="gz::sim::systems::JointStatePublisher">
+        </plugin>
+        <plugin filename="gz-sim-apply-joint-force-system"
+          name="gz::sim::systems::ApplyJointForce">
+          <joint_name>rudder_joint</joint_name>
+        </plugin>
+
+        <!-- Lift drag plugins -->
         <!-- <plugin name='main_sail_liftdrag' filename='libSailPlugin.so'>
           <a0>0.0</a0>
           <cla>6.2832</cla>
@@ -731,33 +742,6 @@
           <radial_symmetry>1</radial_symmetry>
           <topic>lift_drag</topic>
         </plugin> -->
-        <plugin
-          filename="gz-waves1-hydrodynamics-system"
-          name="gz::sim::systems::Hydrodynamics">
-
-          <!-- <enable>rs750::base_link::base_link::base_link_collision</enable> -->
-          <!-- <enable>rs750::base_link::base_link_fixed_joint_lump__anemometer_link_collision_1</enable> -->
-          <!-- <enable>rs750::base_link::base_link_fixed_joint_lump__camera_link_collision_2</enable> -->
-          <enable>rs750::base_link::base_link_fixed_joint_lump__hull_link_collision_3</enable>
-          <!-- <enable>rs750::base_link::base_link_fixed_joint_lump__imu_link_collision_4</enable> -->
-          <!-- <enable>rs750::base_link::base_link_fixed_joint_lump__keel_bulb_link_collision_5</enable> -->
-          <!-- <enable>rs750::base_link::base_link_fixed_joint_lump__magnetic_link_collision_6</enable> -->
-          <!-- <enable>rs750::fore_sail_link::fore_sail_link_collision</enable> -->
-          <!-- <enable>rs750::main_sail_link::main_sail_link_collision</enable> -->
-          <!-- <enable>rs750::keel_fin_link::keel_fin_link_collision</enable> -->
-
-          <hydrodynamics>
-            <damping_on>1</damping_on>
-            <viscous_drag_on>1</viscous_drag_on>
-            <pressure_drag_on>1</pressure_drag_on>
-          </hydrodynamics>
-          <markers>
-            <update_rate>10</update_rate>
-            <water_patch>0</water_patch>
-            <waterline>0</waterline>
-            <underwater_surface>0</underwater_surface>
-          </markers>
-        </plugin>
         <!-- <plugin name='keel_fin_liftdrag' filename='libFoilPlugin.so'>
           <a0>0.0</a0>
           <cla>6.2832</cla>
@@ -788,18 +772,45 @@
           <radial_symmetry>1</radial_symmetry>
           <topic>lift_drag</topic>
         </plugin> -->
-        <static>0</static>
+
+        <!-- Hydrodynamics plugin -->
+        <plugin
+          filename="gz-waves1-hydrodynamics-system"
+          name="gz::sim::systems::Hydrodynamics">
+
+          <!-- <enable>rs750::base_link::base_link::base_link_collision</enable> -->
+          <!-- <enable>rs750::base_link::base_link_fixed_joint_lump__anemometer_link_collision_1</enable> -->
+          <!-- <enable>rs750::base_link::base_link_fixed_joint_lump__camera_link_collision_2</enable> -->
+          <enable>rs750::base_link::base_link_fixed_joint_lump__hull_link_collision_3</enable>
+          <!-- <enable>rs750::base_link::base_link_fixed_joint_lump__imu_link_collision_4</enable> -->
+          <!-- <enable>rs750::base_link::base_link_fixed_joint_lump__keel_bulb_link_collision_5</enable> -->
+          <!-- <enable>rs750::base_link::base_link_fixed_joint_lump__magnetic_link_collision_6</enable> -->
+          <!-- <enable>rs750::fore_sail_link::fore_sail_link_collision</enable> -->
+          <!-- <enable>rs750::main_sail_link::main_sail_link_collision</enable> -->
+          <!-- <enable>rs750::keel_fin_link::keel_fin_link_collision</enable> -->
+
+          <hydrodynamics>
+            <damping_on>1</damping_on>
+            <viscous_drag_on>1</viscous_drag_on>
+            <pressure_drag_on>1</pressure_drag_on>
+          </hydrodynamics>
+          <markers>
+            <update_rate>10</update_rate>
+            <water_patch>0</water_patch>
+            <waterline>0</waterline>
+            <underwater_surface>0</underwater_surface>
+          </markers>
+        </plugin>
       
-        <!-- <plugin name="ardupilot_plugin" filename="libArduPilotPlugin.so">
+        <!-- ArduPilot plugin -->
+        <plugin name="ArduPilotPlugin" filename="ArduPilotPlugin">
         <fdm_addr>127.0.0.1</fdm_addr>
         <fdm_port_in>9002</fdm_port_in>
-        <fdm_port_out>9003</fdm_port_out>
         <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
-
+        <lock_step>1</lock_step>
         <modelXYZToAirplaneXForwardZDown>0 0 0 3.141593 0 0</modelXYZToAirplaneXForwardZDown>
         <gazeboXYZToNED>0 0 0 3.141593 0 0</gazeboXYZToNED>
-
-        <imuName>base_link::imu_sensor</imuName> -->
+        <imuName>imu_sensor</imuName>
 
         <!-- SERVO1_FUNCTION 26 (GroundSteering)
              SERVO1_MIN 1000
@@ -808,20 +819,20 @@
              Input command in [0, 1]
              Target rudder position in [-PI/4, PI/4]
          -->
-        <!-- <control channel="0">
+        <control channel="0">
           <jointName>rudder_joint</jointName>
           <useForce>1</useForce>
           <multiplier>1.570796</multiplier>
           <offset>-0.5</offset>
           <type>POSITION</type>
-          <p_gain>10</p_gain>
-          <i_gain>0.001</i_gain>
-          <d_gain>0</d_gain>
-          <i_max>100</i_max>
-          <i_min>-100</i_min>
+          <p_gain>0.1</p_gain>
+          <i_gain>0</i_gain>
+          <d_gain>0.01</d_gain>
+          <i_max>-1</i_max>
+          <i_min>0</i_min>
           <cmd_max>1000</cmd_max>
           <cmd_min>-1000</cmd_min>
-        </control> -->
+        </control>
 
         <!-- SERVO4_FUNCTION 89 (MainSail)
              SERVO4_MIN 1000
@@ -861,9 +872,9 @@
           <i_min>-100</i_min>
           <cmd_max>1000</cmd_max>
           <cmd_min>-1000</cmd_min>
-        </control>
-      
-      </plugin> -->
+        </control> -->
+
+      </plugin>
 
     </model>
 </sdf>
