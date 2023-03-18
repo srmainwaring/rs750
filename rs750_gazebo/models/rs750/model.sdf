@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!--
-  Copyright (C) 2020  Rhys Mainwaring
+  Copyright (C) 2020-2023  Rhys Mainwaring
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -34,11 +34,11 @@
       4. Rotate imu sensor PI about x
 
     -->
-    <model name='rs750'>
-        <link name='base_link'>
-          <pose frame=''>0 0 0 0 -0 0</pose>
+    <model name="rs750">
+        <link name="base_link">
+          <pose frame="">0 0 0 0 -0 0</pose>
           <inertial>
-            <pose frame=''>-0.150492 0 -0.613518 0 -0 0</pose>
+            <pose frame="">-0.150492 0 -0.613518 0 -0 0</pose>
             <mass>75.3884</mass>
             <inertia>
               <ixx>22.9499</ixx>
@@ -49,8 +49,8 @@
               <izz>20.229</izz>
             </inertia>
           </inertial>
-          <collision name='base_link_collision'>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+          <collision name="base_link_collision">
+            <pose frame="">0 0 0 0 -0 0</pose>
             <geometry>
               <box>
                 <size>0.01 0.01 0.01</size>
@@ -65,8 +65,8 @@
               </friction>
             </surface>
           </collision>
-          <collision name='base_link_fixed_joint_lump__anemometer_link_collision_1'>
-            <pose frame=''>0 0 4 0 -0 0</pose>
+          <collision name="base_link_fixed_joint_lump__anemometer_link_collision_1">
+            <pose frame="">0 0 4 0 -0 0</pose>
             <geometry>
               <cylinder>
                 <length>0.05</length>
@@ -82,8 +82,8 @@
               </friction>
             </surface>
           </collision>
-          <collision name='base_link_fixed_joint_lump__camera_link_collision_2'>
-            <pose frame=''>0.5 0 0.3 0 -0 0</pose>
+          <collision name="base_link_fixed_joint_lump__camera_link_collision_2">
+            <pose frame="">0.5 0 0.3 0 -0 0</pose>
             <geometry>
               <box>
                 <size>0.031 0.026 0.005</size>
@@ -98,8 +98,8 @@
               </friction>
             </surface>
           </collision>
-          <collision name='base_link_fixed_joint_lump__hull_link_collision_3'>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+          <collision name="base_link_fixed_joint_lump__hull_link_collision_3">
+            <pose frame="">0 0 0 0 -0 0</pose>
             <geometry>
               <mesh>
                 <scale>1 1 1</scale>
@@ -115,8 +115,8 @@
               </friction>
             </surface>
           </collision>
-          <collision name='base_link_fixed_joint_lump__imu_link_collision_4'>
-            <pose frame=''>0 0 0.01 0 -0 0</pose>
+          <collision name="base_link_fixed_joint_lump__imu_link_collision_4">
+            <pose frame="">0 0 0.01 0 -0 0</pose>
             <geometry>
               <box>
                 <size>0.031 0.026 0.005</size>
@@ -131,8 +131,8 @@
               </friction>
             </surface>
           </collision>
-          <collision name='base_link_fixed_joint_lump__keel_bulb_link_collision_5'>
-            <pose frame=''>-0.26638 0 -1.08674 3.14159 1.57079 3.14159</pose>
+          <collision name="base_link_fixed_joint_lump__keel_bulb_link_collision_5">
+            <pose frame="">-0.26638 0 -1.08674 3.14159 1.57079 3.14159</pose>
             <geometry>
               <cylinder>
                 <length>0.688</length>
@@ -148,16 +148,16 @@
               </friction>
             </surface>
           </collision>
-          <collision name='base_link_fixed_joint_lump__magnetic_link_collision_6'>
-            <pose frame=''>0 0 0.01 0 -0 0</pose>
+          <collision name="base_link_fixed_joint_lump__magnetic_link_collision_6">
+            <pose frame="">0 0 0.01 0 -0 0</pose>
             <geometry>
               <box>
                 <size>0.031 0.026 0.005</size>
               </box>
             </geometry>
           </collision>
-          <visual name='base_link_visual'>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+          <visual name="base_link_visual">
+            <pose frame="">0 0 0 0 -0 0</pose>
             <geometry>
               <box>
                 <size>0.01 0.01 0.01</size>
@@ -173,8 +173,8 @@
               <specular>0.5 0.5 0.5 1</specular>
             </material>
           </visual>
-          <visual name='base_link_fixed_joint_lump__anemometer_link_visual_1'>
-            <pose frame=''>0 0 4 0 -0 0</pose>
+          <visual name="base_link_fixed_joint_lump__anemometer_link_visual_1">
+            <pose frame="">0 0 4 0 -0 0</pose>
             <geometry>
               <cylinder>
                 <length>0.05</length>
@@ -191,8 +191,8 @@
               <specular>0.1 0.1 0.1 1</specular>
             </material>
           </visual>
-          <visual name='base_link_fixed_joint_lump__camera_link_visual_2'>
-            <pose frame=''>0.5 0 0.3 0 -0 0</pose>
+          <visual name="base_link_fixed_joint_lump__camera_link_visual_2">
+            <pose frame="">0.5 0 0.3 0 -0 0</pose>
             <geometry>
               <box>
                 <size>0.031 0.026 0.005</size>
@@ -208,8 +208,8 @@
               <specular>0.1 0.1 0.1 1</specular>
             </material>
           </visual>
-          <visual name='base_link_fixed_joint_lump__deck_link_visual_3'>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+          <visual name="base_link_fixed_joint_lump__deck_link_visual_3">
+            <pose frame="">0 0 0 0 -0 0</pose>
             <geometry>
               <mesh>
                 <scale>1 1 1</scale>
@@ -226,8 +226,8 @@
               <specular>0.01 0.01 0.01 1.0</specular>
             </material>
           </visual>
-          <visual name='base_link_fixed_joint_lump__hull_link_visual_4'>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+          <visual name="base_link_fixed_joint_lump__hull_link_visual_4">
+            <pose frame="">0 0 0 0 -0 0</pose>
             <geometry>
               <mesh>
                 <scale>1 1 1</scale>
@@ -244,8 +244,8 @@
               <specular>0.1 0.1 0.1 1</specular>
             </material>
           </visual>
-          <visual name='base_link_fixed_joint_lump__imu_link_visual_5'>
-            <pose frame=''>0 0 0.01 0 -0 0</pose>
+          <visual name="base_link_fixed_joint_lump__imu_link_visual_5">
+            <pose frame="">0 0 0.01 0 -0 0</pose>
             <geometry>
               <box>
                 <size>0.031 0.026 0.005</size>
@@ -261,8 +261,8 @@
               <specular>0.1 0.1 0.1 1</specular>
             </material>
           </visual>
-          <visual name='base_link_fixed_joint_lump__keel_bulb_link_visual_6'>
-            <pose frame=''>-0.26638 0 -1.08674 0 -0 0</pose>
+          <visual name="base_link_fixed_joint_lump__keel_bulb_link_visual_6">
+            <pose frame="">-0.26638 0 -1.08674 0 -0 0</pose>
             <geometry>
               <mesh>
                 <scale>1 1 1</scale>
@@ -279,16 +279,16 @@
               <specular>0.9725 0.9529 0.2078 1</specular>
             </material>
           </visual>
-          <visual name='base_link_fixed_joint_lump__magnetic_link_visual_7'>
-            <pose frame=''>0 0 0.01 0 -0 0</pose>
+          <visual name="base_link_fixed_joint_lump__magnetic_link_visual_7">
+            <pose frame="">0 0 0.01 0 -0 0</pose>
             <geometry>
               <box>
                 <size>0.031 0.026 0.005</size>
               </box>
             </geometry>
           </visual>
-          <visual name='base_link_fixed_joint_lump__mast_link_visual_8'>
-            <pose frame=''>0 0 2.09 0 -0 0</pose>
+          <visual name="base_link_fixed_joint_lump__mast_link_visual_8">
+            <pose frame="">0 0 2.09 0 -0 0</pose>
             <geometry>
               <mesh>
                 <scale>1 1 1</scale>
@@ -307,23 +307,23 @@
           </visual>
           <velocity_decay/>
           <velocity_decay/>
-          <!-- <sensor name='anemometer_sensor' type='anemometer'>
+          <!-- <sensor name="anemometer_sensor" type="anemometer">
             <always_on>1</always_on>
             <update_rate>50</update_rate>
             <visualize>1</visualize>
             <topic>sensors/anemometer</topic> -->
-            <!-- <plugin name='anemometer_plugin' filename='libgazebo_ros_anemometer.so'>
+            <!-- <plugin name="anemometer_plugin" filename="libgazebo_ros_anemometer.so">
               <robotNamespace>/</robotNamespace>
               <frameId>anemometer_link</frameId>
               <topicName>wind/apparent</topicName>
             </plugin> -->
-            <!-- <pose frame=''>0 0 4 0 -0 0</pose>
+            <!-- <pose frame="">0 0 4 0 -0 0</pose>
           </sensor> -->
           <velocity_decay/>
-          <!-- <sensor name='camera' type='camera'>
+          <!-- <sensor name="camera" type="camera">
             <always_on>1</always_on>
             <update_rate>30</update_rate>
-            <camera name='camera'>
+            <camera name="camera">
               <horizontal_fov>1.047</horizontal_fov>
               <image>
                 <width>800</width>
@@ -335,7 +335,7 @@
                 <far>300</far>
               </clip>
             </camera> -->
-            <!-- <plugin name='camera_plugin' filename='libgazebo_ros_camera.so'>
+            <!-- <plugin name="camera_plugin" filename="libgazebo_ros_camera.so">
               <alwaysOn>1</alwaysOn>
               <updateRate>0.0</updateRate>
               <cameraName>camera</cameraName>
@@ -349,12 +349,12 @@
               <distortionT1>0.0</distortionT1>
               <distortionT2>0.0</distortionT2>
             </plugin> -->
-            <!-- <pose frame=''>0.5 0 0.3 0 -0 0</pose>
+            <!-- <pose frame="">0.5 0 0.3 0 -0 0</pose>
           </sensor> -->
           <velocity_decay/>
           <velocity_decay/>
           <velocity_decay/>
-          <sensor name='imu_sensor' type='imu'>
+          <sensor name="imu_sensor" type="imu">
             <pose>0 0 0 3.141593 0 0</pose>
             <always_on>1</always_on>
             <update_rate>1000</update_rate>
@@ -365,7 +365,7 @@
               <angular_velocity/>
               <linear_acceleration/>
             </imu> -->
-            <!-- <plugin name='imu_plugin' filename='libgazebo_ros_imu_sensor.so'>
+            <!-- <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
               <gaussianNoise>0.0</gaussianNoise>
               <always_on>1</always_on>
               <updateRateHZ>50</updateRateHZ>
@@ -375,16 +375,16 @@
               <xyzOffset>0 0 0</xyzOffset>
               <rpyOffset>0 0 0</rpyOffset>
             </plugin> -->
-            <pose frame=''>0 0 0.01 0 -0 0</pose>
+            <pose frame="">0 0 0.01 0 -0 0</pose>
           </sensor>
           <velocity_decay/>
           <gravity>1</gravity>
           <velocity_decay/>
         </link>
-        <link name='fore_sail_link'>
-          <pose frame=''>1.03125 0 0.235625 0 -0 0</pose>
+        <link name="fore_sail_link">
+          <pose frame="">1.03125 0 0.235625 0 -0 0</pose>
           <inertial>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+            <pose frame="">0 0 0 0 -0 0</pose>
             <mass>1.6384</mass>
             <inertia>
               <ixx>0.68512</ixx>
@@ -395,8 +395,8 @@
               <izz>0.0140313</izz>
             </inertia>
           </inertial>
-          <collision name='fore_sail_link_collision'>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+          <collision name="fore_sail_link_collision">
+            <pose frame="">0 0 0 0 -0 0</pose>
             <geometry>
               <mesh>
                 <scale>1 1 1</scale>
@@ -412,8 +412,8 @@
               </friction>
             </surface>
           </collision>
-          <visual name='fore_sail_link_visual'>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+          <visual name="fore_sail_link_visual">
+            <pose frame="">0 0 0 0 -0 0</pose>
             <geometry>
               <mesh>
                 <scale>1 1 1</scale>
@@ -433,7 +433,7 @@
           <gravity>1</gravity>
           <velocity_decay/>
         </link>
-        <joint name='fore_sail_joint' type='revolute'>
+        <joint name="fore_sail_joint" type="revolute">
           <child>fore_sail_link</child>
           <parent>base_link</parent>
           <axis>
@@ -463,10 +463,10 @@
             </ode>
           </physics>
         </joint>
-        <link name='keel_fin_link'>
-          <pose frame=''>-0.16255 0 -0.54053 0 -0 0</pose>
+        <link name="keel_fin_link">
+          <pose frame="">-0.16255 0 -0.54053 0 -0 0</pose>
           <inertial>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+            <pose frame="">0 0 0 0 -0 0</pose>
             <mass>8.192</mass>
             <inertia>
               <ixx>0.50986</ixx>
@@ -477,8 +477,8 @@
               <izz>0.0114365</izz>
             </inertia>
           </inertial>
-          <collision name='keel_fin_link_collision'>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+          <collision name="keel_fin_link_collision">
+            <pose frame="">0 0 0 0 -0 0</pose>
             <geometry>
               <mesh>
                 <scale>1 1 1</scale>
@@ -494,8 +494,8 @@
               </friction>
             </surface>
           </collision>
-          <visual name='keel_fin_link_visual'>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+          <visual name="keel_fin_link_visual">
+            <pose frame="">0 0 0 0 -0 0</pose>
             <geometry>
               <mesh>
                 <scale>1 1 1</scale>
@@ -515,7 +515,7 @@
           <gravity>1</gravity>
           <velocity_decay/>
         </link>
-        <joint name='keel_fin_joint' type='fixed'>
+        <joint name="keel_fin_joint" type="fixed">
           <child>keel_fin_link</child>
           <parent>base_link</parent>
           <axis>
@@ -539,10 +539,10 @@
             </ode>
           </physics>
         </joint>
-        <link name='main_sail_link'>
-          <pose frame=''>-0.02625 0 0.291875 0 -0 0</pose>
+        <link name="main_sail_link">
+          <pose frame="">-0.02625 0 0.291875 0 -0 0</pose>
           <inertial>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+            <pose frame="">0 0 0 0 -0 0</pose>
             <mass>3.2768</mass>
             <inertia>
               <ixx>2.26502</ixx>
@@ -553,8 +553,8 @@
               <izz>0.111949</izz>
             </inertia>
           </inertial>
-          <collision name='main_sail_link_collision'>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+          <collision name="main_sail_link_collision">
+            <pose frame="">0 0 0 0 -0 0</pose>
             <geometry>
               <mesh>
                 <scale>1 1 1</scale>
@@ -570,8 +570,8 @@
               </friction>
             </surface>
           </collision>
-          <visual name='main_sail_link_visual'>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+          <visual name="main_sail_link_visual">
+            <pose frame="">0 0 0 0 -0 0</pose>
             <geometry>
               <mesh>
                 <scale>1 1 1</scale>
@@ -591,7 +591,7 @@
           <gravity>1</gravity>
           <velocity_decay/>
         </link>
-        <joint name='main_sail_joint' type='revolute'>
+        <joint name="main_sail_joint" type="revolute">
           <child>main_sail_link</child>
           <parent>base_link</parent>
           <axis>
@@ -621,10 +621,10 @@
             </ode>
           </physics>
         </joint>
-        <link name='rudder_link'>
-          <pose frame=''>-1.2436 0 -0.0487 0 -0 0</pose>
+        <link name="rudder_link">
+          <pose frame="">-1.2436 0 -0.0487 0 -0 0</pose>
           <inertial>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+            <pose frame="">0 0 0 0 -0 0</pose>
             <mass>3.2768</mass>
             <inertia>
               <ixx>0.0716835</ixx>
@@ -635,8 +635,8 @@
               <izz>0.00457459</izz>
             </inertia>
           </inertial>
-          <collision name='rudder_link_collision'>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+          <collision name="rudder_link_collision">
+            <pose frame="">0 0 0 0 -0 0</pose>
             <geometry>
               <mesh>
                 <scale>1 1 1</scale>
@@ -652,8 +652,8 @@
               </friction>
             </surface>
           </collision>
-          <visual name='rudder_link_visual'>
-            <pose frame=''>0 0 0 0 -0 0</pose>
+          <visual name="rudder_link_visual">
+            <pose frame="">0 0 0 0 -0 0</pose>
             <geometry>
               <mesh>
                 <scale>1 1 1</scale>
@@ -673,7 +673,7 @@
           <gravity>1</gravity>
           <velocity_decay/>
         </link>
-        <joint name='rudder_joint' type='revolute'>
+        <joint name="rudder_joint" type="revolute">
           <child>rudder_link</child>
           <parent>base_link</parent>
           <axis>
@@ -712,7 +712,7 @@
         </plugin>
 
         <!-- Lift drag plugins -->
-        <!-- <plugin name='main_sail_liftdrag' filename='libSailPlugin.so'>
+        <!-- <plugin name="main_sail_liftdrag" filename="libSailPlugin.so">
           <a0>0.0</a0>
           <cla>6.2832</cla>
           <alpha_stall>0.1592</alpha_stall>
@@ -727,7 +727,7 @@
           <radial_symmetry>1</radial_symmetry>
           <topic>lift_drag</topic>
         </plugin> -->
-        <!-- <plugin name='fore_sail_liftdrag' filename='libSailPlugin.so'>
+        <!-- <plugin name="fore_sail_liftdrag" filename="libSailPlugin.so">
           <a0>0.0</a0>
           <cla>6.2832</cla>
           <alpha_stall>0.1592</alpha_stall>
@@ -742,7 +742,7 @@
           <radial_symmetry>1</radial_symmetry>
           <topic>lift_drag</topic>
         </plugin> -->
-        <!-- <plugin name='keel_fin_liftdrag' filename='libFoilPlugin.so'>
+        <!-- <plugin name="keel_fin_liftdrag" filename="libFoilPlugin.so">
           <a0>0.0</a0>
           <cla>6.2832</cla>
           <alpha_stall>0.1592</alpha_stall>
@@ -757,7 +757,7 @@
           <radial_symmetry>1</radial_symmetry>
           <topic>lift_drag</topic>
         </plugin> -->
-        <!-- <plugin name='rudder_liftdrag' filename='libFoilPlugin.so'>
+        <!-- <plugin name="rudder_liftdrag" filename="libFoilPlugin.so">
           <a0>0.0</a0>
           <cla>6.2832</cla>
           <alpha_stall>0.1592</alpha_stall>
