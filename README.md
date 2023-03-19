@@ -12,7 +12,7 @@ and [`asv_wave_sim`](https://github.com/srmainwaring/asv_wave_sim) projects.
 The model has been scaled by a factor of 3.2 to have a
 simulated LOA of approx. 2.4m.
 
-![rs750 gazebo](https://github.com/srmainwaring/rs750/wiki/images/rs750_gazebo_camera.png)
+![rs750_ardupilot_4](https://user-images.githubusercontent.com/24916364/226215397-ec2c1114-83fd-438d-a900-f2bb5d42765a.jpg)
 
 ## Dependencies
 
