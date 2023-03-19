@@ -77,10 +77,16 @@ printenv | grep GZ
 
 ## Usage
 
-Launch the example world:
+#### Run Gazebo
 
 ```bash
 gz sim -v4 -r triangle_course.sdf
+```
+
+#### Run ArduPilot SITL
+
+```bash
+sim_vehicle.py -D -v Rover -f rover --model JSON --add-param-file=~/gz_ws/src/rs750/rs750_gazebo/config/rs750.param --console
 ```
 
 ## License
