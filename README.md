@@ -40,6 +40,7 @@ mkdir -p ~/gz_ws/src
 cd ~/gz_ws/src
 git clone https://github.com/srmainwaring/asv_sim.git
 git clone https://github.com/srmainwaring/asv_wave_sim.git
+git clone https://github.com/srmainwaring/ardupilot_gazebo-1 -b srmainwaring/garden/pr-add-anemometer
 git clone https://github.com/ArduPilot/ardupilot_gazebo.git
 
 # Clone this repo
