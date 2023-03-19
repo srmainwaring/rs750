@@ -6,94 +6,82 @@ A robot model based on designer Bryn Heveldt's Racing Sparrow 750 yacht
 ## Overview
 
 These packages contain a robot model based upon the Racing Sparrow 750
-model yacht. They include a robot model that may be viewed in `rviz` and 
-simulated in Gazebo using the plugins from the `asv_wave_sim` project.
-The model has been scaled by a factor of 3.2 to have a simulated LOA of approx. 2.4m.
-
-The project is intended to be used as a test bed for developing
-and prototyping ROS packages for robotic sailing vessels. 
+model yacht. They include a robot model that may be simulated in Gazebo
+using the plugins from the [`asv_sim`](https://github.com/srmainwaring/asv_sim)
+and [`asv_wave_sim`](https://github.com/srmainwaring/asv_wave_sim) projects.
+The model has been scaled by a factor of 3.2 to have a
+simulated LOA of approx. 2.4m.
 
 ![rs750 gazebo](https://github.com/srmainwaring/rs750/wiki/images/rs750_gazebo_camera.png)
 
 ## Dependencies
 
-You will need a working installation of ROS and Gazebo in order to use this package,
-we recommend `ros-melodic-desktop-full`.
+You will need a working installation of
+[Gazebo Garden](https://gazebosim.org/docs/garden/install) in order to use
+this package. There is no dependency on ROS. The original version of this
+project archived in the branch
+[gazebo11](https://github.com/srmainwaring/rs750/tree/gazebo11) depends on
+ROS Melodic. 
 
-To use the model in simulation you will also need to have the marine simulation libraries
-`asv_sim` and `asv_wave_sim` listed in the installation instructions below.
+The model uses plugins from the marine simulation libraries
+[`asv_sim`](https://github.com/srmainwaring/asv_sim) and
+[`asv_wave_sim`](https://github.com/srmainwaring/asv_wave_sim),
+and is controlled using ArduPilot which requires the
+[`ardupilot_gazebo`](https://github.com/ArduPilot/ardupilot_gazebo) plugin.
 
 ## Installation
 
-Source your ROS installation and update the Gazebo plugin path:
+Create and configure a colcon workspace, clone and build the repo:
 
 ```bash
-# Source the ROS and Gazebo environment (add this to ~/.bash_profile)
-$ source /opt/ros/melodic/setup.bash
-$ source /usr/local/share/gazebo/setup.sh
-```
-
-Create and configure a catkin workspace, clone and build the repo:
-
-```bash
-# Create a catkin workspace 
-$ mkdir -p <catkin_ws>/src
+mkdir -p ~/gz_ws/src
 
 # Clone dependencies
-$ cd <catkin_ws>/src
-$ git clone https://github.com/srmainwaring/asv_sim.git
-$ git clone https://github.com/srmainwaring/asv_wave_sim.git
-$ git clone https://github.com/ccny-ros-pkg/imu_tools.git
+cd ~/gz_ws/src
+git clone https://github.com/srmainwaring/asv_sim.git
+git clone https://github.com/srmainwaring/asv_wave_sim.git
+git clone https://github.com/ArduPilot/ardupilot_gazebo.git
 
 # Clone this repo
-$ git clone https://github.com/srmainwaring/rs750.git
+git clone https://github.com/srmainwaring/rs750.git
 
-# Configure and build
-$ cd <catkin_ws>
-$ catkin config --extend /opt/ros/melodic \
-  --cmake-args -DCMAKE_CXX_STANDARD=14 -DCMAKE_BUILD_TYPE=RelWithDebInfo 
-$ catkin build
+# Build
+cd ~/gz_ws
+colcon build 
+
+# Build the ArduPilot plugin
+cd ~/gz_ws/ardupilot_gazebo
+mkdir build && cd build
+cmake ..
+make
 
 # Source the workspace
-$ source devel/setup.bash
+source install/setup.bash
 
-# Add the workspace libraries to the plugin path
-$ export GAZEBO_PLUGIN_PATH=$(pwd)/devel/lib:$GAZEBO_PLUGIN_PATH
+# Add resources to the path
+export GZ_SIM_RESOURCE_PATH=$GZ_SIM_RESOURCE_PATH:\
+$(pwd)/src/rs750/rs750_gazebo/models:\
+$(pwd)/src/rs750/rs750_gazebo/worlds:\
+$(pwd)/src/asv_wave_sim/gz-waves-models/models
+$(pwd)/src/asv_wave_sim/gz-waves-models/world_models
+$(pwd)/src/asv_wave_sim/gz-waves-models/worlds
+
+# Add libraries to the plugin path
+export GZ_SIM_SYSTEM_PLUGIN_PATH=$GZ_SIM_SYSTEM_PLUGIN_PATH:\
+$(pwd)/install/lib
+$(pwd)/src/ardupilot_gazebo/build
 
 # Check the Gazebo environment variables
-$ printenv |grep GAZEBO
+printenv | grep GZ
 ```
 
 ## Usage
 
-View the model in `rviz`:
+Launch the example world:
 
 ```bash
-$ roslaunch rs750_viz view_model.launch
+gz sim -v4 -r triangle_course.sdf
 ```
-
-Launch the ocean world and spawn the model:
-
-```bash
-$ roslaunch rs750_gazebo rs750_ocean_world.launch verbose:=true
-```
-
-The `verbose:=true` flag provides additional information including whether
-the plugins are found and load correctly.
-
-### Develop Job Status
-
-|    | Melodic |
-|--- |--- |
-| rs750 | [![Build Status](https://travis-ci.com/srmainwaring/rs750.svg?branch=feature%2Fwrsc-devel)](https://travis-ci.com/srmainwaring/rs750) |
-
-
-### Release Job Status
-
-|    | Melodic |
-|--- |--- |
-| rs705 | [![Build Status](https://travis-ci.com/srmainwaring/rs750.svg?branch=master)](https://travis-ci.com/srmainwaring/rs750) |
-
 
 ## License
 
@@ -109,7 +97,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 
 ## Acknowledgments
 
-The Racing Sparrow 750 was designed by Bryn Heveldt and is used here with his kind permission.
+The Racing Sparrow 750 was designed by Bryn Heveldt and is used here with
+his kind permission.
 The model plans and original 3D CAD files are available at:
-[Racing Sparrow Model RC Yachts](http://www.racingsparrow.co.nz/theboat/)
+[Racing Sparrow Model RC Yachts](http://www.racingsparrow.co.nz/theboat/).
 
