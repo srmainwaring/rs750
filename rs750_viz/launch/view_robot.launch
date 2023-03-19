@@ -1,6 +1,0 @@
-<?xml version="1.0" ?>
-<!-- Display the robot model in rviz -->
-<launch>
-    <arg name="rvizconfig" default="$(find rs750_viz)/config/robot.rviz" />
-    <node pkg="rviz" type="rviz"  name="rviz" args="-d $(arg rvizconfig)" />    
-</launch>
