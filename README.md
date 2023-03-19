@@ -3,6 +3,8 @@
 A robot model based on designer Bryn Heveldt's Racing Sparrow 750 yacht
 [http://www.racingsparrow.co.nz/](http://www.racingsparrow.co.nz/).
 
+![rs750_ardupilot_4](https://user-images.githubusercontent.com/24916364/226215397-ec2c1114-83fd-438d-a900-f2bb5d42765a.jpg)
+
 ## Overview
 
 These packages contain a robot model based upon the Racing Sparrow 750
@@ -11,8 +13,6 @@ using the plugins from the [`asv_sim`](https://github.com/srmainwaring/asv_sim)
 and [`asv_wave_sim`](https://github.com/srmainwaring/asv_wave_sim) projects.
 The model has been scaled by a factor of 3.2 to have a
 simulated LOA of approx. 2.4m.
-
-![rs750_ardupilot_4](https://user-images.githubusercontent.com/24916364/226215397-ec2c1114-83fd-438d-a900-f2bb5d42765a.jpg)
 
 ## Dependencies
 
