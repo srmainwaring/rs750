@@ -56,14 +56,6 @@
                 <size>0.01 0.01 0.01</size>
               </box>
             </geometry>
-            <surface>
-              <contact>
-                <ode/>
-              </contact>
-              <friction>
-                <ode/>
-              </friction>
-            </surface>
           </collision>
           <collision name="base_link_fixed_joint_lump__anemometer_link_collision_1">
             <pose frame="">0 0 4 0 -0 0</pose>
@@ -73,14 +65,6 @@
                 <radius>0.02</radius>
               </cylinder>
             </geometry>
-            <surface>
-              <contact>
-                <ode/>
-              </contact>
-              <friction>
-                <ode/>
-              </friction>
-            </surface>
           </collision>
           <collision name="base_link_fixed_joint_lump__camera_link_collision_2">
             <pose frame="">0.5 0 0.3 0 -0 0</pose>
@@ -89,14 +73,6 @@
                 <size>0.031 0.026 0.005</size>
               </box>
             </geometry>
-            <surface>
-              <contact>
-                <ode/>
-              </contact>
-              <friction>
-                <ode/>
-              </friction>
-            </surface>
           </collision>
           <collision name="base_link_fixed_joint_lump__hull_link_collision_3">
             <pose frame="">0 0 0 0 -0 0</pose>
@@ -106,14 +82,6 @@
                 <uri>model://rs750/meshes/rs750_hull_collision_3.stl</uri>
               </mesh>
             </geometry>
-            <surface>
-              <contact>
-                <ode/>
-              </contact>
-              <friction>
-                <ode/>
-              </friction>
-            </surface>
           </collision>
           <collision name="base_link_fixed_joint_lump__imu_link_collision_4">
             <pose frame="">0 0 0.01 0 -0 0</pose>
@@ -122,14 +90,6 @@
                 <size>0.031 0.026 0.005</size>
               </box>
             </geometry>
-            <surface>
-              <contact>
-                <ode/>
-              </contact>
-              <friction>
-                <ode/>
-              </friction>
-            </surface>
           </collision>
           <collision name="base_link_fixed_joint_lump__keel_bulb_link_collision_5">
             <pose frame="">-0.26638 0 -1.08674 3.14159 1.57079 3.14159</pose>
@@ -139,14 +99,6 @@
                 <radius>0.048</radius>
               </cylinder>
             </geometry>
-            <surface>
-              <contact>
-                <ode/>
-              </contact>
-              <friction>
-                <ode/>
-              </friction>
-            </surface>
           </collision>
           <collision name="base_link_fixed_joint_lump__magnetic_link_collision_6">
             <pose frame="">0 0 0.01 0 -0 0</pose>
@@ -173,7 +125,8 @@
               <specular>0.5 0.5 0.5 1</specular>
             </material>
           </visual>
-          <visual name="base_link_fixed_joint_lump__anemometer_link_visual_1">
+          
+          <!-- <visual name="base_link_fixed_joint_lump__anemometer_link_visual_1">
             <pose frame="">0 0 4 0 -0 0</pose>
             <geometry>
               <cylinder>
@@ -182,15 +135,12 @@
               </cylinder>
             </geometry>
             <material>
-              <!-- <script>
-                <name>Gazebo/Green</name>
-                <uri>file://media/materials/scripts/gazebo.material</uri>
-              </script> -->
               <ambient>0 1 0 1</ambient>
               <diffuse>0 1 0 1</diffuse>
               <specular>0.1 0.1 0.1 1</specular>
             </material>
-          </visual>
+          </visual> -->
+
           <visual name="base_link_fixed_joint_lump__camera_link_visual_2">
             <pose frame="">0.5 0 0.3 0 -0 0</pose>
             <geometry>
@@ -305,8 +255,33 @@
               <specular>0.1 0.1 0.1 1</specular>
             </material>
           </visual>
-          <velocity_decay/>
-          <velocity_decay/>
+
+          <visual name="anemometer_visual">
+            <pose>0 0 4 0 0 0</pose>
+            <geometry>
+              <cylinder>
+                <radius>0.034</radius>
+                <length>0.04</length>
+              </cylinder>
+            </geometry>
+            <material>
+              <ambient>0.0 1.0 0.0 0.7</ambient>
+              <diffuse>0.0 1.0 0.0 0.7</diffuse>
+              <specular>0.1 0.1 0.1 0.7</specular>
+            </material>
+          </visual>
+
+          <sensor name="anemometer" type="custom" gz:type="anemometer">
+            <pose>0 0 4 0 0 0</pose>
+            <always_on>1</always_on>
+            <update_rate>30</update_rate>
+            <gz:anemometer>
+              <noise type="gaussian">
+                <mean>0</mean>
+                <stddev>0</stddev>
+              </noise>
+            </gz:anemometer>
+          </sensor>
           <!-- <sensor name="anemometer_sensor" type="anemometer">
             <always_on>1</always_on>
             <update_rate>50</update_rate>
@@ -319,67 +294,11 @@
             </plugin> -->
             <!-- <pose frame="">0 0 4 0 -0 0</pose>
           </sensor> -->
-          <velocity_decay/>
-          <!-- <sensor name="camera" type="camera">
-            <always_on>1</always_on>
-            <update_rate>30</update_rate>
-            <camera name="camera">
-              <horizontal_fov>1.047</horizontal_fov>
-              <image>
-                <width>800</width>
-                <height>800</height>
-                <format>R8G8B8</format>
-              </image>
-              <clip>
-                <near>0.02</near>
-                <far>300</far>
-              </clip>
-            </camera> -->
-            <!-- <plugin name="camera_plugin" filename="libgazebo_ros_camera.so">
-              <alwaysOn>1</alwaysOn>
-              <updateRate>0.0</updateRate>
-              <cameraName>camera</cameraName>
-              <imageTopicName>rgb/image_raw</imageTopicName>
-              <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
-              <frameName>camera_link_optical</frameName>
-              <hackBaseline>0.07</hackBaseline>
-              <distortionK1>0.0</distortionK1>
-              <distortionK2>0.0</distortionK2>
-              <distortionK3>0.0</distortionK3>
-              <distortionT1>0.0</distortionT1>
-              <distortionT2>0.0</distortionT2>
-            </plugin> -->
-            <!-- <pose frame="">0.5 0 0.3 0 -0 0</pose>
-          </sensor> -->
-          <velocity_decay/>
-          <velocity_decay/>
-          <velocity_decay/>
           <sensor name="imu_sensor" type="imu">
             <pose>0 0 0 3.141593 0 0</pose>
             <always_on>1</always_on>
             <update_rate>1000</update_rate>
-            <!-- <visualize>1</visualize>
-            <topic>sensors/imu</topic>
-            <imu>
-              <topic>sensors/imu</topic>
-              <angular_velocity/>
-              <linear_acceleration/>
-            </imu> -->
-            <!-- <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
-              <gaussianNoise>0.0</gaussianNoise>
-              <always_on>1</always_on>
-              <updateRateHZ>50</updateRateHZ>
-              <topicName>sensors/imu</topicName>
-              <bodyName>imu_link</bodyName>
-              <frameName>imu_link</frameName>
-              <xyzOffset>0 0 0</xyzOffset>
-              <rpyOffset>0 0 0</rpyOffset>
-            </plugin> -->
-            <pose frame="">0 0 0.01 0 -0 0</pose>
           </sensor>
-          <velocity_decay/>
-          <gravity>1</gravity>
-          <velocity_decay/>
         </link>
         <link name="fore_sail_link">
           <pose frame="">1.03125 0 0.235625 0 -0 0</pose>
@@ -403,14 +322,6 @@
                 <uri>model://rs750/meshes/rs750_fore_sail.stl</uri>
               </mesh>
             </geometry>
-            <surface>
-              <contact>
-                <ode/>
-              </contact>
-              <friction>
-                <ode/>
-              </friction>
-            </surface>
           </collision>
           <visual name="fore_sail_link_visual">
             <pose frame="">0 0 0 0 -0 0</pose>
@@ -439,29 +350,13 @@
           <axis>
             <xyz>-0.271653 0 0.962395</xyz>
             <limit>
-              <!-- <lower>-1.5708</lower>
-              <upper>1.5708</upper> -->
               <lower>-1.39626</lower>
               <upper>1.39626</upper>
-              <effort>1000</effort>
-              <velocity>1000</velocity>
             </limit>
             <dynamics>
-              <spring_reference>0</spring_reference>
-              <spring_stiffness>0</spring_stiffness>
+              <damping>0.001</damping>
             </dynamics>
-            <use_parent_model_frame>1</use_parent_model_frame>
           </axis>
-          <physics>
-            <provide_feedback>1</provide_feedback>
-            <ode>
-              <provide_feedback>1</provide_feedback>
-              <limit>
-                <cfm>0</cfm>
-                <erp>0.2</erp>
-              </limit>
-            </ode>
-          </physics>
         </joint>
         <link name="keel_fin_link">
           <pose frame="">-0.16255 0 -0.54053 0 -0 0</pose>
@@ -485,14 +380,6 @@
                 <uri>model://rs750/meshes/rs750_keel_fin_collision_2.stl</uri>
               </mesh>
             </geometry>
-            <surface>
-              <contact>
-                <ode/>
-              </contact>
-              <friction>
-                <ode/>
-              </friction>
-            </surface>
           </collision>
           <visual name="keel_fin_link_visual">
             <pose frame="">0 0 0 0 -0 0</pose>
@@ -520,24 +407,14 @@
           <parent>base_link</parent>
           <axis>
             <dynamics>
-              <spring_reference>0</spring_reference>
-              <spring_stiffness>0</spring_stiffness>
+              <damping>0.001</damping>
             </dynamics>
-            <use_parent_model_frame>1</use_parent_model_frame>
             <xyz>0 0 1</xyz>
             <limit>
               <lower>-1e+16</lower>
               <upper>1e+16</upper>
             </limit>
           </axis>
-          <physics>
-            <ode>
-              <limit>
-                <cfm>0</cfm>
-                <erp>0.2</erp>
-              </limit>
-            </ode>
-          </physics>
         </joint>
         <link name="main_sail_link">
           <pose frame="">-0.02625 0 0.291875 0 -0 0</pose>
@@ -561,14 +438,6 @@
                 <uri>model://rs750/meshes/rs750_main_sail.stl</uri>
               </mesh>
             </geometry>
-            <surface>
-              <contact>
-                <ode/>
-              </contact>
-              <friction>
-                <ode/>
-              </friction>
-            </surface>
           </collision>
           <visual name="main_sail_link_visual">
             <pose frame="">0 0 0 0 -0 0</pose>
@@ -597,29 +466,13 @@
           <axis>
             <xyz>0 0 1</xyz>
             <limit>
-              <!-- <lower>-1.5708</lower>
-              <upper>1.5708</upper> -->
               <lower>-1.39626</lower>
               <upper>1.39626</upper>
-              <effort>1000</effort>
-              <velocity>1000</velocity>
             </limit>
             <dynamics>
-              <spring_reference>0</spring_reference>
-              <spring_stiffness>0</spring_stiffness>
+              <damping>0.001</damping>
             </dynamics>
-            <use_parent_model_frame>1</use_parent_model_frame>
           </axis>
-          <physics>
-            <provide_feedback>1</provide_feedback>
-            <ode>
-              <provide_feedback>1</provide_feedback>
-              <limit>
-                <cfm>0</cfm>
-                <erp>0.2</erp>
-              </limit>
-            </ode>
-          </physics>
         </joint>
         <link name="rudder_link">
           <pose frame="">-1.2436 0 -0.0487 0 -0 0</pose>
@@ -643,14 +496,6 @@
                 <uri>model://rs750/meshes/rs750_rudder_collision_3.stl</uri>
               </mesh>
             </geometry>
-            <surface>
-              <contact>
-                <ode/>
-              </contact>
-              <friction>
-                <ode/>
-              </friction>
-            </surface>
           </collision>
           <visual name="rudder_link_visual">
             <pose frame="">0 0 0 0 -0 0</pose>
@@ -681,25 +526,11 @@
             <limit>
               <lower>-1.5708</lower>
               <upper>1.5708</upper>
-              <effort>1000</effort>
-              <velocity>1000</velocity>
             </limit>
             <dynamics>
-              <spring_reference>0</spring_reference>
-              <spring_stiffness>0</spring_stiffness>
+              <damping>0.001</damping>
             </dynamics>
-            <use_parent_model_frame>1</use_parent_model_frame>
           </axis>
-          <physics>
-            <provide_feedback>1</provide_feedback>
-            <ode>
-              <provide_feedback>1</provide_feedback>
-              <limit>
-                <cfm>0</cfm>
-                <erp>0.2</erp>
-              </limit>
-            </ode>
-          </physics>
         </joint>
 
         <!-- Joint state and force plugins -->
@@ -711,8 +542,48 @@
           <joint_name>rudder_joint</joint_name>
         </plugin>
 
+        <plugin filename="gz-sim-joint-position-controller-system"
+            name="gz::sim::systems::JointPositionController">
+          <joint_name>rudder_joint</joint_name>
+          <topic>/rudder_joint/cmd_pos</topic>
+          <p_gain>40</p_gain>
+          <i_gain>0.0</i_gain>
+          <d_gain>0.1</d_gain>
+          <i_max>1</i_max>
+          <i_min>-1</i_min>
+          <cmd_max>50</cmd_max>
+          <cmd_min>-50</cmd_min>
+        </plugin>
+
+        <plugin name="gz::sim::systems::SailPositionController"
+            filename="asv_sim2-sail-position-controller-system">
+          <joint_name>fore_sail_joint</joint_name>
+          <topic>/fore_sail_joint/cmd_pos</topic>
+          <p_gain>50</p_gain>
+          <i_gain>0.0</i_gain>
+          <d_gain>0.1</d_gain>
+          <i_max>1</i_max>
+          <i_min>-1</i_min>
+          <cmd_max>200</cmd_max>
+          <cmd_min>-200</cmd_min>
+        </plugin>
+
+        <plugin name="gz::sim::systems::SailPositionController"
+            filename="asv_sim2-sail-position-controller-system">
+          <joint_name>main_sail_joint</joint_name>
+          <topic>/main_sail_joint/cmd_pos</topic>
+          <p_gain>50</p_gain>
+          <i_gain>0.0</i_gain>
+          <d_gain>0.1</d_gain>
+          <i_max>1</i_max>
+          <i_min>-1</i_min>
+          <cmd_max>200</cmd_max>
+          <cmd_min>-200</cmd_min>
+        </plugin>
+
         <!-- Lift drag plugins -->
-        <!-- <plugin name="main_sail_liftdrag" filename="libSailPlugin.so">
+        <plugin name="gz::sim::systems::SailLiftDrag"
+            filename="asv_sim2-sail-lift-drag-system">
           <a0>0.0</a0>
           <cla>6.2832</cla>
           <alpha_stall>0.1592</alpha_stall>
@@ -726,8 +597,9 @@
           <link_name>main_sail_link</link_name>
           <radial_symmetry>1</radial_symmetry>
           <topic>lift_drag</topic>
-        </plugin> -->
-        <!-- <plugin name="fore_sail_liftdrag" filename="libSailPlugin.so">
+        </plugin>
+        <plugin name="gz::sim::systems::SailLiftDrag"
+            filename="asv_sim2-sail-lift-drag-system">
           <a0>0.0</a0>
           <cla>6.2832</cla>
           <alpha_stall>0.1592</alpha_stall>
@@ -741,8 +613,9 @@
           <link_name>fore_sail_link</link_name>
           <radial_symmetry>1</radial_symmetry>
           <topic>lift_drag</topic>
-        </plugin> -->
-        <!-- <plugin name="keel_fin_liftdrag" filename="libFoilPlugin.so">
+        </plugin>
+        <plugin name="gz::sim::systems::FoilLiftDrag"
+            filename="asv_sim2-foil-lift-drag-system">
           <a0>0.0</a0>
           <cla>6.2832</cla>
           <alpha_stall>0.1592</alpha_stall>
@@ -756,8 +629,9 @@
           <link_name>keel_fin_link</link_name>
           <radial_symmetry>1</radial_symmetry>
           <topic>lift_drag</topic>
-        </plugin> -->
-        <!-- <plugin name="rudder_liftdrag" filename="libFoilPlugin.so">
+        </plugin>
+        <plugin name="gz::sim::systems::FoilLiftDrag"
+            filename="asv_sim2-foil-lift-drag-system">
           <a0>0.0</a0>
           <cla>6.2832</cla>
           <alpha_stall>0.1592</alpha_stall>
@@ -771,7 +645,7 @@
           <link_name>rudder_link</link_name>
           <radial_symmetry>1</radial_symmetry>
           <topic>lift_drag</topic>
-        </plugin> -->
+        </plugin>
 
         <!-- Hydrodynamics plugin -->
         <plugin
@@ -806,73 +680,63 @@
         <plugin name="ArduPilotPlugin" filename="ArduPilotPlugin">
         <fdm_addr>127.0.0.1</fdm_addr>
         <fdm_port_in>9002</fdm_port_in>
+
         <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
         <lock_step>1</lock_step>
+        <gazeboXYZToNED>0 0 0 3.141593 0 1.57079632</gazeboXYZToNED>
         <modelXYZToAirplaneXForwardZDown>0 0 0 3.141593 0 0</modelXYZToAirplaneXForwardZDown>
-        <gazeboXYZToNED>0 0 0 3.141593 0 0</gazeboXYZToNED>
-        <imuName>imu_sensor</imuName>
+        <imuName>base_link::imu_sensor</imuName>
+        <anemometer>base_link::anemometer</anemometer>
 
-        <!-- SERVO1_FUNCTION 26 (GroundSteering)
-             SERVO1_MIN 1000
-             SERVO1_MAX 2000
+        <!--
+          SERVO1_FUNCTION 26 (GroundSteering)
+          SERVO1_MIN 1000
+          SERVO1_MAX 2000
 
-             Input command in [0, 1]
-             Target rudder position in [-PI/4, PI/4]
+          Input command in [0, 1]
+          Target rudder position in [-PI/4, PI/4]
          -->
         <control channel="0">
           <jointName>rudder_joint</jointName>
           <useForce>1</useForce>
           <multiplier>1.570796</multiplier>
           <offset>-0.5</offset>
-          <type>POSITION</type>
-          <p_gain>0.1</p_gain>
-          <i_gain>0</i_gain>
-          <d_gain>0.01</d_gain>
-          <i_max>-1</i_max>
-          <i_min>0</i_min>
-          <cmd_max>1000</cmd_max>
-          <cmd_min>-1000</cmd_min>
+          <servo_max>2000</servo_max>
+          <servo_min>1000</servo_min>
+          <type>COMMAND</type>
+          <cmd_topic>/rudder_joint/cmd_pos</cmd_topic>
         </control>
 
-        <!-- SERVO4_FUNCTION 89 (MainSail)
-             SERVO4_MIN 1000
-             SERVO4_MAX 2000
+        <!--
+          SERVO4_FUNCTION 89 (MainSail)
+          SERVO4_MIN 1000
+          SERVO4_MAX 2000
 
-             Input command in [0, 1]
-             Desired sail angle in [0, 80] deg
+          Input command in [0, 1]
+          Desired sail angle in [0, 80] deg
 
-             If the sails are allowed to sheet out too far 
-             the boat will not gybe.
+          If the sails are allowed to sheet out too far 
+          the boat will not gybe.
          -->
-        <!-- <control channel="3">
+        <control channel="3">
           <jointName>fore_sail_joint</jointName>
           <useForce>1</useForce>
-          <multiplier>1.39626</multiplier>
+          <multiplier>1.57079632</multiplier>
           <offset>0</offset>
-          <type>POSITION_LIMIT</type>
-          <p_gain>40</p_gain>
-          <i_gain>0.001</i_gain>
-          <d_gain>0</d_gain>
-          <i_max>100</i_max>
-          <i_min>-100</i_min>
-          <cmd_max>1000</cmd_max>
-          <cmd_min>-1000</cmd_min>
+          <type>COMMAND</type>
+          <cmd_topic>/fore_sail_joint/cmd_pos</cmd_topic>
         </control>
 
         <control channel="3">
           <jointName>main_sail_joint</jointName>
           <useForce>1</useForce>
-          <multiplier>1.39626</multiplier>
+          <multiplier>1.57079632</multiplier>
           <offset>0</offset>
-          <type>POSITION_LIMIT</type>
-          <p_gain>50</p_gain>
-          <i_gain>0.001</i_gain>
-          <d_gain>0</d_gain>
-          <i_max>100</i_max>
-          <i_min>-100</i_min>
-          <cmd_max>1000</cmd_max>
-          <cmd_min>-1000</cmd_min>
-        </control> -->
+          <servo_max>2000</servo_max>
+          <servo_min>1000</servo_min>
+          <type>COMMAND</type>
+          <cmd_topic>/main_sail_joint/cmd_pos</cmd_topic>
+        </control>
 
       </plugin>
 
