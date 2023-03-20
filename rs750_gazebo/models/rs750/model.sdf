@@ -282,18 +282,7 @@
               </noise>
             </gz:anemometer>
           </sensor>
-          <!-- <sensor name="anemometer_sensor" type="anemometer">
-            <always_on>1</always_on>
-            <update_rate>50</update_rate>
-            <visualize>1</visualize>
-            <topic>sensors/anemometer</topic> -->
-            <!-- <plugin name="anemometer_plugin" filename="libgazebo_ros_anemometer.so">
-              <robotNamespace>/</robotNamespace>
-              <frameId>anemometer_link</frameId>
-              <topicName>wind/apparent</topicName>
-            </plugin> -->
-            <!-- <pose frame="">0 0 4 0 -0 0</pose>
-          </sensor> -->
+
           <sensor name="imu_sensor" type="imu">
             <pose>0 0 0 3.141593 0 0</pose>
             <always_on>1</always_on>
@@ -690,8 +679,8 @@
 
         <!--
           SERVO1_FUNCTION 26 (GroundSteering)
-          SERVO1_MIN 1000
           SERVO1_MAX 2000
+          SERVO1_MIN 1000
 
           Input command in [0, 1]
           Target rudder position in [-PI/4, PI/4]
@@ -709,8 +698,8 @@
 
         <!--
           SERVO4_FUNCTION 89 (MainSail)
-          SERVO4_MIN 1000
           SERVO4_MAX 2000
+          SERVO4_MIN 1000
 
           Input command in [0, 1]
           Desired sail angle in [0, 80] deg
