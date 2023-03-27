@@ -39,8 +39,17 @@
     <plugin filename="gz-sim-imu-system"
         name="gz::sim::systems::Imu">
     </plugin>
+    <plugin filename="gz-sim-wind-effects-system"
+      name="gz::sim::systems::WindEffects">
+      <force_approximation_scaling_factor>0.1</force_approximation_scaling_factor>
+    </plugin>
+
     <plugin filename="asv_sim2-anemometer-system"
       name="gz::sim::systems::Anemometer">
+    </plugin>
+    <plugin filename="asv_sim2-wind-system"
+      name="gz::sim::systems::Wind">
+      <topic>/wind</topic>
     </plugin>
 
     <scene>
@@ -51,9 +60,9 @@
 
     <!-- Coordinates  -->
     <spherical_coordinates>
-      <latitude_deg>51.573455012197186</latitude_deg>
-      <longitude_deg>-3.993028752750746</longitude_deg>
-      <elevation>1.0</elevation>
+      <latitude_deg>51.56730439904417</latitude_deg>
+      <longitude_deg>-4.035240867824305</longitude_deg>
+      <elevation>10.0</elevation>
       <heading_deg>0</heading_deg>
       <surface_model>EARTH_WGS84</surface_model>
     </spherical_coordinates>
@@ -66,9 +75,9 @@
       <direction>-0.5 0.1 -0.9</direction>
     </light>
 
-    <!-- Wind from the North - along negative y-axis -->
+    <!-- Wind: 10 m/s from the north (ENU) -->
     <wind>
-      <linear_velocity>0 -15 0</linear_velocity>
+      <linear_velocity>0 -10 0</linear_velocity>
     </wind>
 
     <include>
@@ -77,14 +86,34 @@
     </include>
 
     <model name="buoy_wp1">
-      <static>true</static>
-      <pose>0 90 0.15 0 0 0</pose>
+      <pose>0 90 0.5 0 0 0</pose>
+      <enable_wind>true</enable_wind>
       <link name="base_link">
-        <visual name="base_visual">
+        <inertial>
+          <mass>5</mass>
+          <inertia>
+            <ixx>0.494791667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.494791667</iyy>
+            <iyz>0</iyz>
+            <izz>0.15625</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
           <geometry>
-            <sphere>
-              <radius>0.5</radius>
-            </sphere>
+            <cylinder>
+              <radius>0.25</radius>
+              <length>1.0</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.25</radius>
+              <length>1.0</length>
+            </cylinder>
           </geometry>
           <material>
             <ambient>1 0 0 1</ambient>
@@ -93,17 +122,97 @@
           </material>
         </visual>
       </link>
+      <link name="bridle_link">
+        <pose>0 0 -0.5 0 0 0</pose>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.01000</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01000</iyy>
+            <iyz>0</iyz>
+            <izz>0.01000</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>0.1</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>0.1</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+      </link>
+      <joint name="bridle_joint" type="revolute">
+        <child>bridle_link</child>
+        <parent>base_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+          </limit>
+          <dynamics>
+            <damping>1.0</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <plugin
+        filename="gz-waves1-hydrodynamics-system"
+        name="gz::sim::systems::Hydrodynamics">
+        <enable>buoy_wp1::base_link</enable>
+      </plugin>
+      <plugin
+        filename="asv_sim2-mooring-system"
+        name="gz::sim::systems::Mooring">
+        <link_name>bridle_link</link_name>
+        <anchor_position>0 90 -10</anchor_position>
+        <chain_length>15.0</chain_length>
+        <chain_mass_per_metre>1.0</chain_mass_per_metre>
+      </plugin>
     </model>
 
     <model name="buoy_wp2">
-      <static>true</static>
-      <pose>-55 30 0.15 0 0 0</pose>
+      <pose>-55 30 0.5 0 0 0</pose>
+      <enable_wind>true</enable_wind>
       <link name="base_link">
-        <visual name="base_visual">
+        <inertial>
+          <mass>5</mass>
+          <inertia>
+            <ixx>0.494791667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.494791667</iyy>
+            <iyz>0</iyz>
+            <izz>0.15625</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
           <geometry>
-            <sphere>
-              <radius>0.5</radius>
-            </sphere>
+            <cylinder>
+              <radius>0.25</radius>
+              <length>1.0</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.25</radius>
+              <length>1.0</length>
+            </cylinder>
           </geometry>
           <material>
             <ambient>1 0 0 1</ambient>
@@ -112,17 +221,97 @@
           </material>
         </visual>
       </link>
+      <link name="bridle_link">
+        <pose>0 0 -0.5 0 0 0</pose>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.01000</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01000</iyy>
+            <iyz>0</iyz>
+            <izz>0.01000</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>0.1</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>0.1</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+      </link>
+      <joint name="bridle_joint" type="revolute">
+        <child>bridle_link</child>
+        <parent>base_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+          </limit>
+          <dynamics>
+            <damping>1.0</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <plugin
+        filename="gz-waves1-hydrodynamics-system"
+        name="gz::sim::systems::Hydrodynamics">
+        <enable>buoy_wp2::base_link</enable>
+      </plugin>
+      <plugin
+        filename="asv_sim2-mooring-system"
+        name="gz::sim::systems::Mooring">
+        <link_name>bridle_link</link_name>
+        <anchor_position>-55 30 -10</anchor_position>
+        <chain_length>15.0</chain_length>
+        <chain_mass_per_metre>1.0</chain_mass_per_metre>
+      </plugin>
     </model>
 
     <model name="buoy_wp3">
-      <static>true</static>
-      <pose>60 15 0.15 0 0 0</pose>
+      <pose>60 15 0.5 0 0 0</pose>
+      <enable_wind>true</enable_wind>
       <link name="base_link">
-        <visual name="base_visual">
+        <inertial>
+          <mass>5</mass>
+          <inertia>
+            <ixx>0.494791667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.494791667</iyy>
+            <iyz>0</iyz>
+            <izz>0.15625</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
           <geometry>
-            <sphere>
-              <radius>0.5</radius>
-            </sphere>
+            <cylinder>
+              <radius>0.25</radius>
+              <length>1.0</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.25</radius>
+              <length>1.0</length>
+            </cylinder>
           </geometry>
           <material>
             <ambient>1 0 0 1</ambient>
@@ -131,17 +320,97 @@
           </material>
         </visual>
       </link>
+      <link name="bridle_link">
+        <pose>0 0 -0.5 0 0 0</pose>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.01000</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01000</iyy>
+            <iyz>0</iyz>
+            <izz>0.01000</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>0.1</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>0.1</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+      </link>
+      <joint name="bridle_joint" type="revolute">
+        <child>bridle_link</child>
+        <parent>base_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+          </limit>
+          <dynamics>
+            <damping>1.0</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <plugin
+        filename="gz-waves1-hydrodynamics-system"
+        name="gz::sim::systems::Hydrodynamics">
+        <enable>buoy_wp3::base_link</enable>
+      </plugin>
+      <plugin
+        filename="asv_sim2-mooring-system"
+        name="gz::sim::systems::Mooring">
+        <link_name>bridle_link</link_name>
+        <anchor_position>60 15 -10</anchor_position>
+        <chain_length>15.0</chain_length>
+        <chain_mass_per_metre>1.0</chain_mass_per_metre>
+      </plugin>
     </model>
 
     <model name="buoy_wp4">
-      <static>true</static>
-      <pose>0 -40 0.15 0 0 0</pose>
+      <pose>0 -40 0.5 0 0 0</pose>
+      <enable_wind>true</enable_wind>
       <link name="base_link">
-        <visual name="base_visual">
+        <inertial>
+          <mass>5</mass>
+          <inertia>
+            <ixx>0.494791667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.494791667</iyy>
+            <iyz>0</iyz>
+            <izz>0.15625</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
           <geometry>
-            <sphere>
-              <radius>0.5</radius>
-            </sphere>
+            <cylinder>
+              <radius>0.25</radius>
+              <length>1.0</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.25</radius>
+              <length>1.0</length>
+            </cylinder>
           </geometry>
           <material>
             <ambient>1 0 0 1</ambient>
@@ -150,6 +419,66 @@
           </material>
         </visual>
       </link>
+      <link name="bridle_link">
+        <pose>0 0 -0.5 0 0 0</pose>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>0.01000</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.01000</iyy>
+            <iyz>0</iyz>
+            <izz>0.01000</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>0.1</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>0.1</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+      </link>
+      <joint name="bridle_joint" type="revolute">
+        <child>bridle_link</child>
+        <parent>base_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+          </limit>
+          <dynamics>
+            <damping>1.0</damping>
+          </dynamics>
+        </axis>
+      </joint>
+      <plugin
+        filename="gz-waves1-hydrodynamics-system"
+        name="gz::sim::systems::Hydrodynamics">
+        <enable>buoy_wp4::base_link</enable>
+      </plugin>
+      <plugin
+        filename="asv_sim2-mooring-system"
+        name="gz::sim::systems::Mooring">
+        <link_name>bridle_link</link_name>
+        <anchor_position>0 -40 -10</anchor_position>
+        <chain_length>15.0</chain_length>
+        <chain_mass_per_metre>1.0</chain_mass_per_metre>
+      </plugin>
     </model>
 
     <include>
