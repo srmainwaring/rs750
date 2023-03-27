@@ -80,7 +80,7 @@ printenv | grep GZ
 #### Run Gazebo
 
 ```bash
-gz sim -v4 -r triangle_course.sdf
+gz sim -v4 -r sailing_course.sdf
 ```
 
 #### Run ArduPilot SITL

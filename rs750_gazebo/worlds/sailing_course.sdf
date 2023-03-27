@@ -39,6 +39,9 @@
     <plugin filename="gz-sim-imu-system"
         name="gz::sim::systems::Imu">
     </plugin>
+    <plugin filename="gz-sim-navsat-system"
+      name="gz::sim::systems::NavSat">
+    </plugin>
     <plugin filename="gz-sim-wind-effects-system"
       name="gz::sim::systems::WindEffects">
       <force_approximation_scaling_factor>0.1</force_approximation_scaling_factor>
@@ -60,8 +63,8 @@
 
     <!-- Coordinates  -->
     <spherical_coordinates>
-      <latitude_deg>51.56730439904417</latitude_deg>
-      <longitude_deg>-4.035240867824305</longitude_deg>
+      <latitude_deg>51.566151</latitude_deg>
+      <longitude_deg>-4.034345</longitude_deg>
       <elevation>10.0</elevation>
       <heading_deg>0</heading_deg>
       <surface_model>EARTH_WGS84</surface_model>
@@ -75,9 +78,9 @@
       <direction>-0.5 0.1 -0.9</direction>
     </light>
 
-    <!-- Wind: 10 m/s from the north (ENU) -->
+    <!-- Wind: 10 m/s from the south-west (ENU) -->
     <wind>
-      <linear_velocity>0 -10 0</linear_velocity>
+      <linear_velocity>7.07 7.07 0</linear_velocity>
     </wind>
 
     <include>
@@ -86,7 +89,7 @@
     </include>
 
     <model name="buoy_wp1">
-      <pose>0 90 0.5 0 0 0</pose>
+      <pose>-75 -75 0.5 0 0 0</pose>
       <enable_wind>true</enable_wind>
       <link name="base_link">
         <inertial>
@@ -121,6 +124,10 @@
             <specular>0.1 0.1 0.1 1</specular>
           </material>
         </visual>
+        <sensor name="navsat_sensor" type="navsat">
+          <always_on>1</always_on>
+          <update_rate>30</update_rate>
+        </sensor>
       </link>
       <link name="bridle_link">
         <pose>0 0 -0.5 0 0 0</pose>
@@ -178,14 +185,14 @@
         filename="asv_sim2-mooring-system"
         name="gz::sim::systems::Mooring">
         <link_name>bridle_link</link_name>
-        <anchor_position>0 90 -10</anchor_position>
+        <anchor_position>-75 -75 -10</anchor_position>
         <chain_length>15.0</chain_length>
         <chain_mass_per_metre>1.0</chain_mass_per_metre>
       </plugin>
     </model>
 
     <model name="buoy_wp2">
-      <pose>-55 30 0.5 0 0 0</pose>
+      <pose>75 -75 0.5 0 0 0</pose>
       <enable_wind>true</enable_wind>
       <link name="base_link">
         <inertial>
@@ -220,6 +227,10 @@
             <specular>0.1 0.1 0.1 1</specular>
           </material>
         </visual>
+        <sensor name="navsat_sensor" type="navsat">
+          <always_on>1</always_on>
+          <update_rate>30</update_rate>
+        </sensor>
       </link>
       <link name="bridle_link">
         <pose>0 0 -0.5 0 0 0</pose>
@@ -277,14 +288,14 @@
         filename="asv_sim2-mooring-system"
         name="gz::sim::systems::Mooring">
         <link_name>bridle_link</link_name>
-        <anchor_position>-55 30 -10</anchor_position>
+        <anchor_position>75 -75 -10</anchor_position>
         <chain_length>15.0</chain_length>
         <chain_mass_per_metre>1.0</chain_mass_per_metre>
       </plugin>
     </model>
 
     <model name="buoy_wp3">
-      <pose>60 15 0.5 0 0 0</pose>
+      <pose>-75 75 0.5 0 0 0</pose>
       <enable_wind>true</enable_wind>
       <link name="base_link">
         <inertial>
@@ -319,6 +330,10 @@
             <specular>0.1 0.1 0.1 1</specular>
           </material>
         </visual>
+        <sensor name="navsat_sensor" type="navsat">
+          <always_on>1</always_on>
+          <update_rate>30</update_rate>
+        </sensor>
       </link>
       <link name="bridle_link">
         <pose>0 0 -0.5 0 0 0</pose>
@@ -376,14 +391,14 @@
         filename="asv_sim2-mooring-system"
         name="gz::sim::systems::Mooring">
         <link_name>bridle_link</link_name>
-        <anchor_position>60 15 -10</anchor_position>
+        <anchor_position>-75 75 -10</anchor_position>
         <chain_length>15.0</chain_length>
         <chain_mass_per_metre>1.0</chain_mass_per_metre>
       </plugin>
     </model>
 
     <model name="buoy_wp4">
-      <pose>0 -40 0.5 0 0 0</pose>
+      <pose>75 75 0.5 0 0 0</pose>
       <enable_wind>true</enable_wind>
       <link name="base_link">
         <inertial>
@@ -413,11 +428,15 @@
             </cylinder>
           </geometry>
           <material>
-            <ambient>1 0 0 1</ambient>
-            <diffuse>1 0 0 1</diffuse>
+            <ambient>1 1 0 1</ambient>
+            <diffuse>1 1 0 1</diffuse>
             <specular>0.1 0.1 0.1 1</specular>
           </material>
         </visual>
+        <sensor name="navsat_sensor" type="navsat">
+          <always_on>1</always_on>
+          <update_rate>30</update_rate>
+        </sensor>
       </link>
       <link name="bridle_link">
         <pose>0 0 -0.5 0 0 0</pose>
@@ -475,14 +494,14 @@
         filename="asv_sim2-mooring-system"
         name="gz::sim::systems::Mooring">
         <link_name>bridle_link</link_name>
-        <anchor_position>0 -40 -10</anchor_position>
+        <anchor_position>75 75 -10</anchor_position>
         <chain_length>15.0</chain_length>
         <chain_mass_per_metre>1.0</chain_mass_per_metre>
       </plugin>
     </model>
 
     <include>
-      <pose>0 0 0 0 0 1.57079632</pose>
+      <pose>50 50 0 0 0 1.57079632</pose>
       <uri>model://rs750</uri>
     </include>
 
